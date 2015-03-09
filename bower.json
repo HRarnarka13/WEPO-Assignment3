@@ -1,0 +1,25 @@
+{
+  "name": "WEPO-Assignment3",
+  "version": "1.0.0",
+  "homepage": "https://github.com/HRarnarka13/WEPO-Assignment3",
+  "authors": [
+    "arnarka13@ru.is",
+    "freyr12@ru.is"
+  ],
+  "description": "Skilaverkefni 3 í Vefforritun 2",
+  "main": "index.html",
+  "keywords": [
+    "WEPO",
+    "Angularjs",
+    "Grunt"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
