@@ -6,7 +6,7 @@ function ($http, SERVER_URL) {
 		login: function (user) {
 			return $http.post(SERVER_URL + '/login', user);
 		},
-		getEvaluations: function () {
+		getMyEvaluations: function () {
 			return $http.get(SERVER_URL + '/my/evaluations');
 		}
 	};

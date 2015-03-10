@@ -4,15 +4,22 @@ angular.module("TeachingEvaluations").controller('EvaluationsController', [
 	'$rootScope',
 	'$routeParams',
 	'$http',
-function ($scope, $location, $rootScope, $routeParams, $http) { 
+	'Dispatch',
+function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) { 
 	$scope.username = $routeParams.user;
 	$scope.courses = [];
-	$http.get("http://dispatch.ru.is/demo/api/v1/my/evaluations")
-		.success(function (data) {
-			for (var i = data.length - 1; i >= 0; i--) {
-				if (!isRegistered(data[i].CourseID)) {
-					$scope.courses.push({CourseID: data[i].CourseID, CourseName: data[i].CourseName});
-				}
+
+	Dispatch.getMyEvaluations().success(function (data) {
+		for (var i = data.length - 1; i >= 0; i--) {
+				console.log(data[i]);
+				// if (!isRegistered(data[i].CourseID)) {
+					// var course = {
+					// 	CourseID: data[i].CourseID,
+					// 	CourseName: data[i].CourseName,
+					// 	Semester: data[i].Semester
+					// }
+					$scope.courses.push(data[i]);
+				// }
 			};
 	});
 

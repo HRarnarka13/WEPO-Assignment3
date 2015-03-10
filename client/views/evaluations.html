@@ -2,6 +2,10 @@
 	<h2 id="username" name="username" ng-model="username">{{username}}</h2>
 
 	<ul>
-		<li ng-repeat="course in courses track by $index">{{course.CourseID}}, {{course.CourseName}}</li>
+		<li ng-repeat="course in courses track by $index">
+			<a ng-href="/courses/{{course.CourseID}}/{{course.Semester}}/evaluations/{{course.ID}}">
+				{{course.CourseID}}, {{course.CourseName}}, {{course.Semester}}, {{course.ID}}
+			</a>
+		</li>
 	</ul>
 </div>
