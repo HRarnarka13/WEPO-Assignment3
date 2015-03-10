@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Login</div>
+			<div class="panel-body">
+
+				<div class="alert alert-danger" ng-cloak ng-show="errorMessage != ''">
+					{{errorMessage}}
+				</div>
+				<form>
+					<div class="form-group">
+						<label for="username" class="control-label">Username</label>
+						<input type="text" class="form-control" id="username" name="username" ng-model="username" autofocus/>
+						<label for="password" class="control-label">Password</label>
+						<input type="text" class="form-control" id="password" name="password" ng-model="password" autofocus/>
+					</div>
+					<button type="submit" class="btn btn-primary" ng-click="login(username, password)">Login</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
