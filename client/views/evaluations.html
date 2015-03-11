@@ -3,7 +3,7 @@
 
 	<ul>
 		<li ng-repeat="course in courses track by $index">
-			<a ng-href="/courses/{{course.CourseID}}/{{course.Semester}}/evaluations/{{course.ID}}">
+			<a ng-href="#/courses/{{course.CourseID}}/{{course.Semester}}/evaluations/{{course.ID}}">
 				{{course.CourseID}}, {{course.CourseName}}, {{course.Semester}}, {{course.ID}}
 			</a>
 		</li>
