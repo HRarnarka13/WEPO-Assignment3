@@ -8,6 +8,12 @@ function ($http, SERVER_URL) {
 		},
 		getMyEvaluations: function () {
 			return $http.get(SERVER_URL + '/my/evaluations');
+		},
+		getEvaluation: function (courseID, semesterID, evalID) {
+			return $http.get(SERVER_URL + '/courses/' + courseID + '/' + semesterID + '/evaluations/' + evalID);
+		},
+		getTeachers: function (courseID, semesterID) {
+			return $http.get(SERVER_URL + '/courses/' + courseID + '/' + semesterID + '/teachers');
 		}
 	};
 }]);
