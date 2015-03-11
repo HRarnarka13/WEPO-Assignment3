@@ -11,10 +11,14 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 
 	$scope.login = function (user, pass) {
 		console.log(user + " " + pass);
-		Dispatch.login( {user: user, pass: pass} )
-			.success(function (data) {
-				$http.defaults.headers.common.Authorization = "Basic " + data.Token;
+		Dispatch.login( {user: user, pass: pass} ).success(function (data) {
+			console.log(data);
+			$http.defaults.headers.common.Authorization = "Basic " + data.Token;
+			if(data.User.Role === 'admin') {
+				$location.path('/admin/evaluations/');
+			} else {
 				$location.path('/evaluations/' + $scope.username);
-			});
+			}
+		});
 	};
 }]);

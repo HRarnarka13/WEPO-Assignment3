@@ -6,6 +6,7 @@ function ($routeProvider) {
 		.when('/login', { templateUrl: 'client/views/login.html', controller: 'LoginController' })
 		.when('/evaluations/:user', { templateUrl: 'client/views/evaluations.html', controller: 'EvaluationsController' })
 		.when('/courses/:courseID/:semesterID/evaluations/:evalID', { templateUrl: 'client/views/evaluation.html', controller: 'EvaluationController' })
+		.when('/admin/evaluations', { templateUrl: 'client/views/adminEvaluations.html', controller: 'AdminEvaluationsController' })
 		.otherwise({
   			redirectTo: '/login'
 		});
