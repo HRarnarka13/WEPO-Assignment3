@@ -12,13 +12,23 @@ function ($http, SERVER_URL) {
 		getMyEvaluations: function () {
 			return $http.get(SERVER_URL + '/my/evaluations');
 		},
-		getEvaluation: function (courseID, semesterID, evalID) {
+		getMyEvaluation: function (courseID, semesterID, evalID) {
 			return $http.get(SERVER_URL + '/courses/' + courseID + '/' + semesterID + '/evaluations/' + evalID);
 		},
 		getTeachers: function (courseID, semesterID) {
 			return $http.get(SERVER_URL + '/courses/' + courseID + '/' + semesterID + '/teachers');
+		},
+		getEvaluation: function (evalID) {
+			return $http.get(SERVER_URL + '/evaluations/' + evalID);
+		},
+		getEvaluationTemplates: function () {
+			return $http.get(SERVER_URL + '/evaluationtemplates/');
+		},
+		getEvaluationTemplate: function (ID) {
+			return $http.get(SERVER_URL + '/evaluationtemplates/' + ID);
 		}
 	};
 }]);
 
+// angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/h28/api/v1");
 angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/demo/api/v1");

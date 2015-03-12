@@ -1,4 +1,4 @@
-angular.module('TeachingEvaluations').controller('AdminEvaluationController', [
+angular.module('TeachingEvaluations').controller('EvaluationTemplateController', [
 	'$scope',
 	'$location',
 	'$rootScope',
@@ -7,10 +7,7 @@ angular.module('TeachingEvaluations').controller('AdminEvaluationController', [
 	'Dispatch',
 function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 
-
-	Dispatch.getEvaluation($routeParams.evalID).success(function (data) {
+	Dispatch.getEvaluationTemplate($routeParams.ID).success(function (data) {
 		console.log(data);
 	});
-
-
 }]);

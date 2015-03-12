@@ -11,7 +11,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 	$scope.semesterID = $routeParams.semesterID;
 	$scope.evalID = $routeParams.evalID;
 
-	Dispatch.getEvaluation($scope.cID, $scope.semesterID, $scope.evalID).success(function (data) {
+	Dispatch.getMyEvaluation($scope.cID, $scope.semesterID, $scope.evalID).success(function (data) {
 		console.log(data);
 		$scope.introText = data.IntroText;
 		$scope.title = data.Title;
