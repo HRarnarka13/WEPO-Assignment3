@@ -6,17 +6,9 @@ function ($http, SERVER_URL) {
 		login: function (user) {
 			return $http.post(SERVER_URL + '/login', user);
 		},
+		// Admin functions
 		getEvaluations: function () {
 			return $http.get(SERVER_URL + '/evaluations');
-		},
-		getMyEvaluations: function () {
-			return $http.get(SERVER_URL + '/my/evaluations');
-		},
-		getMyEvaluation: function (courseID, semesterID, evalID) {
-			return $http.get(SERVER_URL + '/courses/' + courseID + '/' + semesterID + '/evaluations/' + evalID);
-		},
-		getTeachers: function (courseID, semesterID) {
-			return $http.get(SERVER_URL + '/courses/' + courseID + '/' + semesterID + '/teachers');
 		},
 		getEvaluation: function (evalID) {
 			return $http.get(SERVER_URL + '/evaluations/' + evalID);
@@ -26,6 +18,16 @@ function ($http, SERVER_URL) {
 		},
 		getEvaluationTemplate: function (ID) {
 			return $http.get(SERVER_URL + '/evaluationtemplates/' + ID);
+		},
+		// User functions
+		getMyEvaluations: function () {
+			return $http.get(SERVER_URL + '/my/evaluations');
+		},
+		getMyEvaluation: function (courseID, semesterID, evalID) {
+			return $http.get(SERVER_URL + '/courses/' + courseID + '/' + semesterID + '/evaluations/' + evalID);
+		},
+		getTeachers: function (courseID, semesterID) {
+			return $http.get(SERVER_URL + '/courses/' + courseID + '/' + semesterID + '/teachers');
 		}
 	};
 }]);
