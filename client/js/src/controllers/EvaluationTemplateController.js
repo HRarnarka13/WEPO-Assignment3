@@ -8,7 +8,8 @@ angular.module('TeachingEvaluations').controller('EvaluationTemplateController',
 function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 
 	Dispatch.getEvaluationTemplate($routeParams.ID).success(function (data) {
-		$scope.templates = data;
+		$scope.template = data;
+		console.log('EvaluationTemplateController');
 		console.log(data);
 	});
 }]);
