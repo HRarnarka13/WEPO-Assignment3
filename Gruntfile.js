@@ -5,7 +5,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks('grunt-karma');
 	grunt.initConfig({
 		jshint: {
-			src: ['client/js/**/*.js', '!client/js/dest/*.js'],
+			src: ['src/js/**/*.js', '!src/js/dest/*.js'],
 			gruntfile: ['Gruntfile.js'],
 			options: {
 				curly:  true,
@@ -31,7 +31,7 @@ module.exports = function ( grunt ) {
 		uglify: {
 			my_target: {
 		      	files: {
-		        	'client/js/dest/output.min.js': ['client/js/dest/built.js']
+		        	'src/js/dest/output.min.js': ['src/js/dest/built.js']
 		      	}
 		    }
 		},
@@ -40,16 +40,15 @@ module.exports = function ( grunt ) {
 		    	separator: ';',
 		    },
 		    dist: {
-				src: ['client/js/**/*.js', '!client/js/dest/*.js'],
-		      	dest: 'client/js/dest/built.js',
+				src: ['src/js/**/*.js', '!src/js/dest/*.js'],
+		      	dest: 'src/js/dest/built.js',
 			},
 		},
 		karma: {
 		 	unit: {
 		 		options: {
-		 			files: ['client/js/test/**/*.js']
-		 		},
-		 		browsers: ['Chrome']
+		 			files: ['test/**/*.js']
+		 		}
 		 	}
 		}
 	});

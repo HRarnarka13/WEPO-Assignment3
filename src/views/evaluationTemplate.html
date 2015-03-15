@@ -1,0 +1,51 @@
+<div class="col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{template.Title}}</h3>
+		</div>
+		<div class="panel-body">
+			<h4>Course Questions</h4>
+			<ul class="list-group">
+				<li class="list-group-item" 
+					ng-repeat="courseQuestion in template.CourseQuestions">{{courseQuestion.Text}}
+				</li>
+			</ul>
+			<h4>Teacher Questions</h4>
+			<ul class="list-group">	
+				<li class="list-group-item" 
+					ng-repeat="teacherQuestion in template.TeacherQuestions">{{teacherQuestion.Text}}
+				</li>
+			</ul>
+		</div>
+		<div class="panel-footer">
+			<button class="btn btn-primary" ng-click="newQuestion(); toggle()">New Question</button>	
+		</div>
+	</div>
+</div>
+
+<div class="col-md-6" ng-show="showQuestion">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">New Question</h3>
+		</div>
+		<div class="panel-body">
+			<select ng-model="questionType">
+				<option value="teacherQuestion">Teacher Question</option>
+				<option value="courseQuestion">Course Question</option>
+			</select>
+			<input type="text" ng-model="text"></input>
+			<br></br>
+			Type of answer?
+			<select ng-model"answerType">
+				<optgroup label="Type of answer?">
+					<option value="text">Text</option>
+					<option value="single">Single</option>
+					<option value="multiple">Multiple</option>
+				</optgroup>
+			</select>
+		</div>
+		<div class="panel-footer">
+			<button class="btn btn-primary" ng-click="addQuestion(questionType, text, answerType)">Add</button>
+		</div>
+	</div>
+</div>

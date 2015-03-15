@@ -1,0 +1,38 @@
+<h1>Admin yeah!</h1>
+
+<!--Evaluations templates -->
+<div class="col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Template</h3>
+		</div>
+		<div class="panel-body">
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="template in templates">{{template.ID}} - {{template.Title}}
+					<a ng-href="#/admin/evaluationtemplates/{{template.ID}}">
+						<button class="btn btn-xs btn-default pull-right">Modify</button>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="panel-footer">
+			<button class="btn btn-primary">New Template</button>	
+		</div>
+	</div>
+</div>
+
+<!-- Evaluations -->
+<div class="col-md-6">
+	<div class="panel panel-default" ng-repeat="evaluation in evaluations">
+		<div class="panel-heading">
+			<a ng-href="#/admin/evaluation/{{evaluation.ID}}">
+				<h3 class="panel-title">{{evaluation.TemplateTitle}}</h3>
+			</a>
+		</div>
+		<div class="panel-body">
+			<div> Start date: {{evaluation.StartDate |  date:"MM/dd/yyyy '-' HH:mm"}}</div>
+			<div> End date: {{evaluation.EndDate |  date:"MM/dd/yyyy '-' HH:mm"}}</div>
+			<div> State: {{evaluation.Status}} </div>
+		</div>
+	</div>
+</div>

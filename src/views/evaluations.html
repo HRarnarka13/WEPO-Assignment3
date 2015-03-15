@@ -1,0 +1,16 @@
+<div class="container">
+	<h2 id="username" name="username" ng-model="username">{{username}}</h2>
+	
+	<div class="panel panel-default" ng-repeat="course in courses track by $index">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{course.CourseName}} {{course.CourseID}}</h3>
+		</div>
+		<div class="panel-body">
+			<li ng-repeat="evaluation in course.Evaluations">
+				<a ng-href="#/courses/{{evaluation.CourseID}}/{{evaluation.Semester}}/evaluations/{{evaluation.ID}}">
+					{{evaluation.CourseName}}, ({{evaluation.Semester}}), {{evaluation.TemplateName}}
+				</a>
+			</li>
+		</div>
+	</div>
+</div>

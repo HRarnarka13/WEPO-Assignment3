@@ -1,0 +1,44 @@
+<h2 id="cID" name="cID" ng-model="cID">{{cID}} - {{title}}</h2>
+<div class="alert alert-info" role="alert">{{introText}}</div>
+
+<!-- CoursesQuestions -->
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Um tímana</h3>
+	</div>
+	<div class="panel-body">	
+		<form>
+			<div class="form-group" ng-repeat="courseQuestion in courseQuestions">
+				<label for="{{courseQuestion.ID}}">{{courseQuestion.Text}}</label>
+				<textarea type="text" class="form-control" id="{{courseQuestion.ID}}" placeholder="Svar..."></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Svara</button>
+		</form>
+	</div>
+</div>
+
+<!-- TeacherQuestions -->
+<div class="panel panel-default" ng-repeat="teacher in teachers">
+	<div class="panel-heading">
+		<div class="media">
+			<div class="media-left">
+				<a href="#">
+				<img class="media-object" src="{{teacher.ImageURL}}" alt="{{teacher.FullName}}">
+				</a>
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">{{teacher.FullName}}</h4>
+				{{teacher.Email}}
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<form>
+			<div class="form-group" ng-repeat="teacherQuestion in teacherQuestions">
+				<label for="{{teacherQuestion.ID}}">{{teacherQuestion.Text}}</label>
+				<textarea type="text" class="form-control" id="{{teacherQuestion.ID}}" placeholder="Svar..."></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Svara</button>
+		</form>
+	</div>
+</div>
