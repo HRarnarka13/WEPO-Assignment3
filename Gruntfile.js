@@ -41,8 +41,16 @@ module.exports = function ( grunt ) {
 		    dist: {
 				src: ['client/js/**/*.js', '!client/js/dest/*.js'],
 		      	dest: 'client/js/dest/built.js',
-		    },
-		 }
+			},
+		},
+		karma: {
+		 	unit: {
+		 		options: {
+		 			files: ['client/js/test/**/*.js']
+		 		},
+		 		browsers: ['Chrome']
+		 	}
+		}
 	});
 	grunt.registerTask('checkjs', ['jshint']);
 	grunt.registerTask('minify', ['uglify']);
