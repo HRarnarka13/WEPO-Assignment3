@@ -51,6 +51,7 @@ module.exports = function ( grunt ) {
       		singleRun: true,
       		browsers: ['PhantomJS'],
 		 			files: [
+		 				'bower_components/angular/angular.js',
 		 				'src/js/**/*.js',
 		 				'tests/**/*.spec.js'
 		 			]
