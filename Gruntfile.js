@@ -47,7 +47,13 @@ module.exports = function ( grunt ) {
 		karma: {
 		 	unit: {
 		 		options: {
-		 			files: ['test/**/*.js']
+      		frameworks: ['jasmine'],
+      		singleRun: true,
+      		browsers: ['PhantomJS'],
+		 			files: [
+		 				'src/js/**/*.js',
+		 				'tests/**/*.spec.js'
+		 			]
 		 		}
 		 	}
 		}
