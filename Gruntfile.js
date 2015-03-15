@@ -2,6 +2,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-karma');
 	grunt.initConfig({
 		jshint: {
 			src: ['client/js/**/*.js', '!client/js/dest/*.js'],
@@ -56,5 +57,6 @@ module.exports = function ( grunt ) {
 	grunt.registerTask('minify', ['uglify']);
 	grunt.registerTask('makeonefile', ['concat']);
 	grunt.registerTask('makejs', ['concat', 'uglify']);
+	grunt.registerTask('test', ['karma']);
 	grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 };
