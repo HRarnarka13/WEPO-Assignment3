@@ -10,15 +10,21 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 	$scope.username = '';
 
 	$scope.login = function (user, pass) {
-		console.log(user + " " + pass);
-		Dispatch.login( {user: user, pass: pass} ).success(function (data) {
-			console.log(data);
-			$http.defaults.headers.common.Authorization = "Basic " + data.Token;
-			if(data.User.Role === 'admin') {
-				$location.path('/admin/evaluations/');
-			} else {
-				$location.path('/evaluations/' + $scope.username);
-			}
-		});
+		// console.log(user + " " + pass);
+
+		Dispatch.login( {user: user, pass: pass} )
+			.success(function (data) {
+				$scope.failToLogin = false;
+				//console.log(data);
+				$http.defaults.headers.common.Authorization = "Basic " + data.Token;
+				if(data.User.Role === 'admin') {
+					$location.path('/admin/evaluations/');
+				} else {
+					$location.path('/evaluations/' + $scope.username);
+				}
+			})
+			.error(function() {
+				$scope.failToLogin = true;
+			});
 	};
 }]);

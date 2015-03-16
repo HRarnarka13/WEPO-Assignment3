@@ -30,10 +30,10 @@ module.exports = function ( grunt ) {
 		},
 		uglify: {
 			my_target: {
-		      	files: {
+		      files: {
 		        	'src/js/dest/output.min.js': ['src/js/dest/built.js']
-		      	}
-		    }
+		      }
+		   }
 		},
 		concat: {
 		    options: {
@@ -49,9 +49,11 @@ module.exports = function ( grunt ) {
 		 		options: {
       		frameworks: ['jasmine'],
       		singleRun: true,
-      		browsers: ['PhantomJS'],
+      		browsers: ['Chrome'],
 		 			files: [
 		 				'bower_components/angular/angular.js',
+		 				'bower_components/angular-route/angular-route.js',
+		 				'bower_components/angular-mocks/angular-mocks.js',
 		 				'src/js/**/*.js',
 		 				'tests/**/*.spec.js'
 		 			]
