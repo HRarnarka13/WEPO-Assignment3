@@ -19,6 +19,9 @@ function ($http, SERVER_URL) {
 		getEvaluationTemplate: function (ID) {
 			return $http.get(SERVER_URL + '/evaluationtemplates/' + ID);
 		},
+		postEvaluation: function (ID, startDate, endDate) {
+			return $http.post(SERVER_URL + '/evaluations', {TemplateID: ID, StartDate: startDate, EndDate: endDate});
+		},
 		/*postEvaluationTemplates: function () {
 			return $http.post(SERVER_URL + '/evaluationtemplates/');
 		},*/

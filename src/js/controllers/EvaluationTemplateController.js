@@ -28,10 +28,13 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 
 	$scope.createEvaluation = function (){
 		console.log("Before dispatch");
-		/*Dispatch.postEvaluation($routeParams.ID, $scope.startDate, $scope.endDate).success(function (data){
-			console.log("PostEvaluation");
-			console.log(data);
-		});*/
+		var start = $scope.startDate.toISOString();
+		var end = $scope.endDate.toISOString();
+		Dispatch.postEvaluation($routeParams.ID, start, end).success(function (data){
+		});
+		console.log($routeParams.ID);
+		console.log(start);
+		console.log(end);
 		console.log("createEvaluation");
 	}
 
