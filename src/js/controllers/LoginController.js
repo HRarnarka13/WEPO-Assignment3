@@ -11,19 +11,22 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 	$scope.password 	= '';
 
 	$scope.login = function () {
-		Dispatch.login($scope.username, $scope.password)
-			.success(function (data) {
-				$scope.failToLogin = false;
-				$http.defaults.headers.common.Authorization = "Basic " + data.Token;
-				$scope.role = data.User.Role;
-				if($scope.role === 'admin') {
-					$location.path('/admin/evaluations/');
-				} else {
-					$location.path('/evaluations/' + $scope.username);
-				}
-			})
-			.error(function() {
-				$scope.failToLogin = true;
-			});
+		if($scope.loginForm.$valid) {
+			Dispatch.login($scope.username, $scope.password)
+				.success(function (data) {
+					$scope.failToLogin = false;
+					$http.defaults.headers.common.Authorization = "Basic " + data.Token;
+					$scope.role = data.User.Role;
+					if($scope.role === 'admin') {
+						$location.path('/admin/evaluations/');
+					} else {
+						$location.path('/evaluations/' + $scope.username);
+					}
+				})
+				.error(function() {
+					$scope.errorMessage = 'Username or password uncorrect!';
+					$scope.failToLogin = true;
+				});
+		}
 	};
 }]);
