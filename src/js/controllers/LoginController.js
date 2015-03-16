@@ -24,7 +24,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 					}
 				})
 				.error(function() {
-					$scope.errorMessage = 'Username or password uncorrect!';
+					$scope.errorMessage = 'Username or password incorrect!';
 					$scope.failToLogin = true;
 				});
 		}

@@ -7,6 +7,7 @@ angular.module('TeachingEvaluations').controller('EvaluationTemplateController',
 	'Dispatch',
 function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 	$scope.showQuestion = false;
+	$scope.showEvaluation = false;
 	Dispatch.getEvaluationTemplate($routeParams.ID).success(function (data) {
 		$scope.template = data;
 		console.log('EvaluationTemplateController');
@@ -25,8 +26,20 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 		};*/
 	});
 
+	$scope.createEvaluation = function (){
+		console.log("Before dispatch");
+		/*Dispatch.postEvaluation($routeParams.ID, $scope.startDate, $scope.endDate).success(function (data){
+			console.log("PostEvaluation");
+			console.log(data);
+		});*/
+		console.log("createEvaluation");
+	}
+
 	$scope.toggle = function(){
 		$scope.showQuestion = !$scope.showQuestion;
+	};
+	$scope.toggle2 = function(){
+		$scope.showEvaluation = !$scope.showEvaluation;
 	};
 
 	
