@@ -47,9 +47,13 @@ module.exports = function ( grunt ) {
 		karma: {
 		 	unit: {
 		 		options: {
-      		frameworks: ['jasmine'],
-      		singleRun: true,
-      		browsers: ['Chrome'],
+      				frameworks: ['jasmine'],
+      				singleRun: true,
+  		    		browsers: ['Chrome'],
+  		    		reporters: ['progress', 'coverage'],
+  		    		preprocessors: {
+  		    			'src/**/*.js': ['coverage']
+  		    		},
 		 			files: [
 		 				'bower_components/angular/angular.js',
 		 				'bower_components/angular-route/angular-route.js',
