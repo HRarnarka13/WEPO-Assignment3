@@ -9,6 +9,7 @@ function ($routeProvider) {
 		.when('/admin/evaluations', { templateUrl: 'src/views/adminEvaluations.html', controller: 'AdminEvaluationsController' })
 		.when('/admin/evaluation/:evalID', { templateUrl: 'src/views/adminEvaluation.html', controller: 'AdminEvaluationController' })
 		.when('/admin/evaluationtemplates/:ID', { templateUrl: 'src/views/evaluationTemplate.html', controller: 'EvaluationTemplateController' })
+		.when('/admin/newtemplate', { templateUrl: 'src/views/newTemplate.html', controller: 'NewTemplateController' })		
 		.otherwise({
   			redirectTo: '/login'
 		});
