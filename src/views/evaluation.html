@@ -2,7 +2,6 @@
     <h2 id="cID" name="cID" ng-model="cID">{{cID}} - {{title}}</h2>
     <div class="alert alert-info" role="alert">{{introText}}</div>
 </div>
-<evaluation-question></evaluation-question>
 <form name="evaluationForm" ng-submit="submitAnswers()">
     <!-- CoursesQuestions -->
     <div class="col-md-12">
@@ -10,119 +9,32 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Um tímana</h3>
             </div>
-           <div class="panel-body">	
-                <div class="form-group" ng-repeat="courseQuestion in courseQuestions">
-
-                    <label>{{courseQuestion.Text}}</label>
-                    <!-- Text question -->
-                    <textarea type="text" 
-                              class="form-control"
-                              placeholder="Svar..." 
-                              ng-show="courseQuestion.Type==='text'">
-                    </textarea>
-
-                    <div ng-show="courseQuestion.Type==='single'">
-                        <label class="radio-inline">
-                            <input type="radio" 
-                                   name="{{courseQuestion.ID}}-radio" 
-                                   id="{{courseQuestion.ID}}-radio-1" 
-                                   value="option1"> 1
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" 
-                                   name="{{courseQuestion.ID}}-radio" 
-                                   id="{{courseQuestion.ID}}-radio-2" 
-                                   value="option2"> 2
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" 
-                                   name="{{courseQuestion.ID}}-radio" 
-                                   id="{{courseQuestion.ID}}-radio-3" 
-                                   value="option3"> 3
-                        </label>
-                    </div>
-                    <div ng-show="courseQuestion.Type==='multiple'">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" 
-                                   id="inlineCheckbox1" 
-                                   value="option1"> 1
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" 
-                                   id="inlineCheckbox2" 
-                                   value="option2"> 2
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" 
-                                   id="inlineCheckbox3" 
-                                   value="option3"> 3
-                        </label>
-                    </div>
-                </div>
+            <div class="panel-body">	
+                <evaluation-question ng-repeat="cq in courseQuestions"
+                            question="cq"></evaluation-question>
             </div>
-        </div>
-    </div>
-    
-    <!-- TeacherQuestions -->
-    <div class="col-md-6" ng-repeat="teacher in teachers">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#">
-                        <img class="media-object img-rounded" 
-                             src="{{teacher.ImageURL}}" 
-                             alt="{{teacher.FullName}}">
-                        </a>
-                    </div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="teacher in teachers">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object img-rounded" 
+                                    src="{{teacher.ImageURL}}" 
+                                    alt="{{teacher.FullName}}">
+                            </a>
+                        </div>
                     <div class="media-body">
                         <h4 class="media-heading">{{teacher.FullName}}</h4>
-                        {{teacher.Email}}
+                            {{teacher.Email}}
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="form-group" ng-repeat="teacherQuestion in teacherQuestions">
-                    <label>{{teacherQuestion.Text}}</label>
-                    <textarea type="text" 
-                              class="form-control" 
-                              placeholder="Svar..." 
-                              ng-show="teacherQuestion.Type==='text'"></textarea>
-
-                    <div ng-show="teacherQuestion.Type==='single'">
-                        <label class="radio-inline">
-                            <input type="radio" 
-                                   name="{{teacher.Username}}-radio" 
-                                   id="{{teacher.Username}}-radio-1" 
-                                   value="option1"> 1
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" 
-                                   name="{{teacher.Username}}-radio" 
-                                   id="{{teacher.Username}}-radio-2" 
-                                   value="option2"> 2
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" 
-                                   name="{{teacher.Username}}-radio"
-                                   id="{{teacher.Username}}-radio-3"
-                                   value="option3"> 3
-                        </label>
-                    </div>
-                    <div ng-show="teacherQuestion.Type==='multiple'">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
-                        </label>
-                    </div>
-                </div>
+                    <evaluation-question ng-repeat="tq in teacherQuestions"
+                            question="tq"></evaluation-question>
+                </li>
+            </ul>
+            <div class="panel-footer">
+                <button class="btn btn-primary pull-right">Svara</button>
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary pull-right">Svara</button>
 </form>
