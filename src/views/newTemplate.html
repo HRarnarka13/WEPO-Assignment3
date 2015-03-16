@@ -1,0 +1,39 @@
+<h1>NEW TEMPLATE</h1>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1 class="panel-title">Template</h1>
+	</div>
+	<div class="panel-body">
+		<p>
+			<h3>Teacher Question</h3>
+			<input type="text" ng-model="text"></input>
+			<br>
+			Type of answer:
+			<select ng-model"answerType">
+				<optgroup label="Type of answer?">
+					<option value="text">Text</option>
+					<option value="single">Single</option>
+					<option value="multiple">Multiple</option>
+				</optgroup>
+			</select>
+		</p>
+		<button class="btn btn-primary" ng-click="addQuestion(questionType, text, answerType)">Add</button>
+		<p>
+			<h3>Course Question</h3>
+			<input type="text" ng-model="text"></input>
+			<br>
+			Type of answer:
+			<select ng-model"answerType">
+				<optgroup label="Type of answer?">
+					<option value="text">Text</option>
+					<option value="single">Single</option>
+					<option value="multiple">Multiple</option>
+				</optgroup>
+			</select>
+		</p>
+		<button class="btn btn-primary" ng-click="addQuestion(questionType, text, answerType)">Add</button>
+	</div>
+	<div class="panel-footer">
+		<button class="btn btn-primary" ng-click="createTemplate()">Create Template</button>
+	</div>
+</div>
