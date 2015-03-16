@@ -24,5 +24,13 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 		console.log(data);
 		$scope.teachers = data;
 	});
+    
+    $scope.submitAnswers = function () {
+        if($scope.evaluationForm.$valid){
+            console.log('Answers:');
+            console.log($scope.evaluationForm);
+        }
+        console.log($scope.evaluationForm);
+    };
 	
 }]);

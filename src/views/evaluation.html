@@ -2,7 +2,8 @@
     <h2 id="cID" name="cID" ng-model="cID">{{cID}} - {{title}}</h2>
     <div class="alert alert-info" role="alert">{{introText}}</div>
 </div>
-<form name="evalationForm">
+<evaluation-question></evaluation-question>
+<form name="evaluationForm" ng-submit="submitAnswers()">
     <!-- CoursesQuestions -->
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -14,28 +15,47 @@
 
                     <label>{{courseQuestion.Text}}</label>
                     <!-- Text question -->
-                    <textarea type="text" class="form-control" placeholder="Svar..." ng-show="courseQuestion.Type==='text'"></textarea>
+                    <textarea type="text" 
+                              class="form-control"
+                              placeholder="Svar..." 
+                              ng-show="courseQuestion.Type==='text'">
+                    </textarea>
 
                     <div ng-show="courseQuestion.Type==='single'">
                         <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+                            <input type="radio" 
+                                   name="{{courseQuestion.ID}}-radio" 
+                                   id="{{courseQuestion.ID}}-radio-1" 
+                                   value="option1"> 1
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+                            <input type="radio" 
+                                   name="{{courseQuestion.ID}}-radio" 
+                                   id="{{courseQuestion.ID}}-radio-2" 
+                                   value="option2"> 2
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+                            <input type="radio" 
+                                   name="{{courseQuestion.ID}}-radio" 
+                                   id="{{courseQuestion.ID}}-radio-3" 
+                                   value="option3"> 3
                         </label>
                     </div>
                     <div ng-show="courseQuestion.Type==='multiple'">
                         <label class="checkbox-inline">
-                            <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+                            <input type="checkbox" 
+                                   id="inlineCheckbox1" 
+                                   value="option1"> 1
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+                            <input type="checkbox" 
+                                   id="inlineCheckbox2" 
+                                   value="option2"> 2
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+                            <input type="checkbox" 
+                                   id="inlineCheckbox3" 
+                                   value="option3"> 3
                         </label>
                     </div>
                 </div>
@@ -50,7 +70,9 @@
                 <div class="media">
                     <div class="media-left">
                         <a href="#">
-                        <img class="media-object img-rounded" src="{{teacher.ImageURL}}" alt="{{teacher.FullName}}">
+                        <img class="media-object img-rounded" 
+                             src="{{teacher.ImageURL}}" 
+                             alt="{{teacher.FullName}}">
                         </a>
                     </div>
                     <div class="media-body">
@@ -62,17 +84,29 @@
             <div class="panel-body">
                 <div class="form-group" ng-repeat="teacherQuestion in teacherQuestions">
                     <label>{{teacherQuestion.Text}}</label>
-                    <textarea type="text" class="form-control" placeholder="Svar..." ng-show="teacherQuestion.Type==='text'"></textarea>
+                    <textarea type="text" 
+                              class="form-control" 
+                              placeholder="Svar..." 
+                              ng-show="teacherQuestion.Type==='text'"></textarea>
 
                     <div ng-show="teacherQuestion.Type==='single'">
                         <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+                            <input type="radio" 
+                                   name="{{teacher.Username}}-radio" 
+                                   id="{{teacher.Username}}-radio-1" 
+                                   value="option1"> 1
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+                            <input type="radio" 
+                                   name="{{teacher.Username}}-radio" 
+                                   id="{{teacher.Username}}-radio-2" 
+                                   value="option2"> 2
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+                            <input type="radio" 
+                                   name="{{teacher.Username}}-radio"
+                                   id="{{teacher.Username}}-radio-3"
+                                   value="option3"> 3
                         </label>
                     </div>
                     <div ng-show="teacherQuestion.Type==='multiple'">
