@@ -8,6 +8,6 @@ angular.module('TeachingEvaluations').controller('NewTemplateController', [
 function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 	$scope.createTemplate = function () {
 		console.log("createTemplate");
-	}
+	};
 
 }]);

@@ -7,17 +7,16 @@ angular.module("TeachingEvaluations").controller('LoginController', [
 	'Dispatch',
 function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 	$scope.errorMessage = '';
-	$scope.username = '';
+	$scope.username 	= '';
+	$scope.password 	= '';
 
-	$scope.login = function (user, pass) {
-		// console.log(user + " " + pass);
-
-		Dispatch.login( {user: user, pass: pass} )
+	$scope.login = function () {
+		Dispatch.login($scope.username, $scope.password)
 			.success(function (data) {
 				$scope.failToLogin = false;
-				//console.log(data);
 				$http.defaults.headers.common.Authorization = "Basic " + data.Token;
-				if(data.User.Role === 'admin') {
+				$scope.role = data.User.Role;
+				if($scope.role === 'admin') {
 					$location.path('/admin/evaluations/');
 				} else {
 					$location.path('/evaluations/' + $scope.username);

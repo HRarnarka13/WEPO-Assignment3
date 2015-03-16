@@ -3,8 +3,8 @@ angular.module('TeachingEvaluations').factory('Dispatch', [
 	'SERVER_URL',
 function ($http, SERVER_URL) {
 	return {
-		login: function (user) {
-			return $http.post(SERVER_URL + '/login', user);
+		login: function (user, pass) {
+			return $http.post(SERVER_URL + '/login', {user: user, pass: pass});
 		},
 		// Admin functions
 		getEvaluations: function () {

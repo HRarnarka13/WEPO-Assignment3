@@ -8,7 +8,6 @@ describe('LoginController', function () {
 		login: function (user, pass) {
 			return {
 				success: function(fn){
-					console.log("yeah!");
 					if (pass !== '' && (user === 'arnarka13' || user === 'admin')) {
 						var role;
 						if (user === 'admin') {
@@ -16,7 +15,7 @@ describe('LoginController', function () {
 						} else {
 							role = 'student';
 						}
-						fn({ User : {Role : role} });
+						fn( { User: { Role: role } } );
 					}
 					return {
 						error: function(errorFn) {
@@ -30,9 +29,10 @@ describe('LoginController', function () {
 		}
 	};
 
-	beforeEach(inject(function (_$controller_, _$rootScope_) {
+	beforeEach(inject(function (_$controller_, _$rootScope_, _$location_) {
 		$controller = _$controller_;
 		$rootScope = _$rootScope_;
+		$location = _$location_;
 	}));
 
 	describe('$scope.login', function () {
@@ -40,45 +40,54 @@ describe('LoginController', function () {
 
 		beforeEach(function() {
 			$scope = {
-				loginForm: { $valid: true },
-				user: {
-					name: '',
-					pass: ''
-				}
+				username: '',
+				password: ''
          };
 
-			spyOn(mockLogin, "login").and.callThrough();
+			spyOn(mockLogin, 'login').and.callThrough();
+			spyOn($location, 'path');
 
 			controller = $controller('LoginController', { 
 				$scope: $scope,
-				// getur gert villu
 				Dispatch: mockLogin,
-				$rootScope: $rootScope
+				$rootScope: $rootScope,
+				$location : $location,
 			});
 		});
 
 		// the tests :
 		it('should fail the login because of invalid user', function() {
-            $scope.user.name = 'rassiprump';
-            $scope.user.pass = '123456';
+            $scope.username = 'rassiprump';
+            $scope.password = '123456';
 
             $scope.login();
 
             expect($scope.failToLogin).toBeTruthy();
             expect(mockLogin.login).toHaveBeenCalled();
-            // expect($location.path).not.toHaveBeenCalled();
+            expect($location.path).not.toHaveBeenCalled();
       });
 
-      it('should success the login because of admin login', function() {
-            $scope.user.name = 'admin';
-            $scope.user.pass = '123456';
+      it('should succeed the login, admin login', function() {
+            $scope.username = 'admin';
+            $scope.password = '123456';
 
             $scope.login();
 
             expect(mockLogin.login).toHaveBeenCalled();
-            // expect($scope.failToLogin).not.toBeTruthy();
-            // expect($rootScope.data).toBeDefined();
-            // expect($location.path).not.toHaveBeenCalled();
+            expect($scope.failToLogin).not.toBeTruthy();
+            expect($scope.role).toMatch('admin');
+            expect($location.path).toHaveBeenCalled();
+      });
+      it('should succeed the login, student login', function() {
+            $scope.username = 'arnarka13';
+            $scope.password = '123456';
+
+            $scope.login();
+
+            expect(mockLogin.login).toHaveBeenCalled();
+            expect($scope.failToLogin).not.toBeTruthy();
+            expect($scope.role).toMatch('student');
+            expect($location.path).toHaveBeenCalled();
       });
 	});
 });
