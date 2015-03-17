@@ -10,7 +10,7 @@
                 <h3 class="panel-title">Um tímana</h3>
             </div>
             <div class="panel-body">	
-                <evaluation-question ng-repeat="cq in courseQuestions"
+                <evaluation-question ng-repeat="cq in courseQuestions track by $index"
                             question="cq"></evaluation-question>
             </div>
             <ul class="list-group">
@@ -28,7 +28,7 @@
                             {{teacher.Email}}
                         </div>
                     </div>
-                    <evaluation-question ng-repeat="tq in teacherQuestions"
+                    <evaluation-question ng-repeat="tq in teacherQuestions track by $index"
                             question="tq" teacher="teacher"></evaluation-question>
                 </li>
             </ul>
