@@ -22,8 +22,8 @@ function ($http, SERVER_URL) {
 		postEvaluation: function (ID, startDate, endDate) {
 			return $http.post(SERVER_URL + '/evaluations', {TemplateID: ID, StartDate: startDate, EndDate: endDate});
 		},
-		postEvaluationTemplate: function (title, introText, introTextEN, courseQuestions, teacherQuestions) {
-			return $http.post(SERVER_URL + '/evaluationtemplates/', {Title: title, TitleEN: title, IntroText: introText, IntroTextEN: introTextEN, CourseQuestions: courseQuestions, TeacherQuestions: teacherQuestions});
+		postEvaluationTemplate: function (title, titleEN, introText, introTextEN, courseQuestions, teacherQuestions) {
+			return $http.post(SERVER_URL + '/evaluationtemplates/', {Title: title, TitleEN: titleEN, IntroText: introText, IntroTextEN: introTextEN, CourseQuestions: courseQuestions, TeacherQuestions: teacherQuestions});
 		},
 		// User functions
 		getMyEvaluations: function () {

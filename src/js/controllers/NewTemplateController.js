@@ -23,7 +23,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 
 
 	$scope.createTemplate = function () {
-		Dispatch.postEvaluationTemplate($scope.title, $scope.introText, $scope.introTextEN, $scope.courseQuestions, $scope.teacherQuestions).success(function (data){
+		Dispatch.postEvaluationTemplate($scope.title, $scope.titleEN, $scope.introText, $scope.introTextEN, $scope.courseQuestions, $scope.teacherQuestions).success(function (data){
 		});
 		console.log($scope.courseQuestions);
 		console.log($scope.teacherQuestions);
