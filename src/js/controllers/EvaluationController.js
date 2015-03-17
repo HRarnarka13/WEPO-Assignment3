@@ -17,11 +17,11 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 		$scope.title = data.Title;
 		$scope.courseQuestions = data.CourseQuestions;
 		$scope.teacherQuestions = data.TeacherQuestions;
-		console.log($scope.courseQuestions);
+		// console.log($scope.courseQuestions);
 	});
 
 	Dispatch.getTeachers($scope.cID, $scope.semesterID).success(function (data) {
-		console.log(data);
+		// console.log(data);
 		$scope.teachers = data;
 	});
     
@@ -30,7 +30,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
             console.log('Answers:');
             console.log($scope.evaluationForm);
         }
-        console.log($scope.evaluationForm);
+        // console.log($scope.evaluationForm);
     };
 	
 }]);

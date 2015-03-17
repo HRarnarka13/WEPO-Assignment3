@@ -43,9 +43,9 @@ describe('LoginController', function () {
 				username: '',
 				password: '',
 				loginForm: {
-					$valid: true
+					$valid: true 
 				} 
-         };
+        	};
 
 			spyOn(mockLogin, 'login').and.callThrough();
 			spyOn($location, 'path');
