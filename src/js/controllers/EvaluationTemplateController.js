@@ -31,12 +31,9 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 		var start = $scope.startDate.toISOString();
 		var end = $scope.endDate.toISOString();
 		Dispatch.postEvaluation($routeParams.ID, start, end).success(function (data){
+			$location.path('/admin/evaluations/');
 		});
-		console.log($routeParams.ID);
-		console.log(start);
-		console.log(end);
-		console.log("createEvaluation");
-	}
+	};
 
 	$scope.toggle = function(){
 		$scope.showQuestion = !$scope.showQuestion;

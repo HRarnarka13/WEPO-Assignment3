@@ -4,36 +4,84 @@
 		<h1 class="panel-title">Template</h1>
 	</div>
 	<div class="panel-body">
-		<p>
-			<h3>Teacher Question</h3>
-			<input type="text" ng-model="text"></input>
-			<br>
-			Type of answer:
-			<select ng-model"answerType">
-				<optgroup label="Type of answer?">
-					<option value="text">Text</option>
-					<option value="single">Single</option>
-					<option value="multiple">Multiple</option>
-				</optgroup>
-			</select>
-		</p>
-		<button class="btn btn-primary" ng-click="addQuestion(questionType, text, answerType)">Add</button>
-		<p>
-			<h3>Course Question</h3>
-			<input type="text" ng-model="text"></input>
-			<br>
-			Type of answer:
-			<select ng-model"answerType">
-				<optgroup label="Type of answer?">
-					<option value="text">Text</option>
-					<option value="single">Single</option>
-					<option value="multiple">Multiple</option>
-				</optgroup>
-			</select>
-		</p>
-		<button class="btn btn-primary" ng-click="addQuestion(questionType, text, answerType)">Add</button>
+		<ul class="list-group">
+			<li class="list-group-item">
+				Title:
+				<input type="text" ng-model="title">
+			</li>
+			<li class="list-group-item">
+				Intro Text:
+				<input type="text" ng-model="introText">
+			</li>
+		</ul>
+		<button class="btn btn-primary" ng-click="showTeacherQuestion()">Teacher Question</button>
+		<button class="btn btn-primary" ng-click="showCourseQuestion()">Course Question</button>
 	</div>
 	<div class="panel-footer">
 		<button class="btn btn-primary" ng-click="createTemplate()">Create Template</button>
 	</div>
+</div>
+
+<div class="col-md-6" ng-show="showCourse">
+	<form name="newCourseQuestion" ng-submit="createTemplate()">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h1 class="panel-title">Course Question2</h1>
+			</div>
+			<div class="panel-body">
+				<ul class="list-group">
+					<li class="list-group-item">
+						Text:
+						<input type="text" ng-model="questionText">
+					</li>
+					<li class"list-group">
+						Type of answer:
+						<select ng-model="answerType">
+							<optgroup label="Type of answer?">
+								<option value="text">Text</option>
+								<option value="single">Single</option>
+								<option value="multiple">Multiple</option>
+							</optgroup>
+						</select>
+					</li>
+				</ul>
+			</div>
+
+			<div class="panel-footer">
+				<button type="submit"class="btn btn-primary">Add Question</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="col-md-6" ng-show="showTeacher">
+	<form name="newTeacherQuestion" ng-submit="createTemplate()">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h1 class="panel-title">Teacher Question</h1>
+			</div>
+			<div class="panel-body">
+				<ul class="list-group">
+					<li class="list-group-item">
+						Text:
+						<input type="text" ng-model="questionText">
+					</li>
+					<li class"list-group">
+						Type of answer:
+						<select ng-model="answerType">
+							<optgroup label="Type of answer?">
+								<option value="text">Text</option>
+								<option value="single">Single</option>
+								<option value="multiple">Multiple</option>
+							</optgroup>
+						</select>
+					</li>
+				</ul>
+			</div>
+
+			<div class="panel-footer">
+				<button type="submit"class="btn btn-primary">Add Question</button>
+			</div>
+		</div>
+	</form>
 </div>
