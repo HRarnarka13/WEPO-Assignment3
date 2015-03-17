@@ -1,5 +1,65 @@
-// this is supposed to be an awesome comment
+//@mainHeaderColor: #309296;
+@mainColor: #99CCFF;
+@mainHeaderColor: #337ab7;
+@mainFooterColor: #fff;
+@mainFontColor: #000;
+@mainFontHoverColor: #fff;
 
-@mainColour: #309296;
- 
-body { color: @mainColour; }
+
+body { 
+	color: @mainFontColor;
+	font-family: Arial, Helvetica, sans-serif;
+	//background-color: @mainColor; 
+}
+
+.navbar-inverse {
+	//navbar color
+	background-color: @mainHeaderColor;
+    border-color: @mainHeaderColor;
+    .navbar-header {
+    	.navbar-brand{
+    		color: @mainFontColor;
+    		&:hover {
+    			color: @mainFontHoverColor;
+    		}
+    	}
+    	background-color: @mainHeaderColor;
+    }
+    //links on nav bar
+    .navbar-nav {
+	    background-color: @mainHeaderColor;
+    	>.active{
+    		background-color: red;
+    		> a {
+    			background-color: @mainHeaderColor;
+    			color: @mainFontColor;
+    			&:hover, &:focus{
+    				background-color: @mainHeaderColor;
+    				color: @mainFontHoverColor;
+    			}
+    		}
+    	}
+    }
+
+
+}
+
+//heading panels (on top of all input forms)
+.panel-default {
+	.panel-heading {
+		background-color: @mainHeaderColor;
+		font-size: 125%;
+		border-color: @mainHeaderColor;
+		.panel-title {
+			color: @mainFontColor;
+			font-weight:normal;
+
+		}
+	}
+	.panel-body {
+		//background-color: @mainColor;
+	}
+	.panel-footer {
+		background-color: @mainFooterColor;
+	}
+}
