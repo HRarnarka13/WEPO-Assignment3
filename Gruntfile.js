@@ -60,6 +60,9 @@ module.exports = function ( grunt ) {
 		 				'bower_components/angular-mocks/angular-mocks.js',
 		 				'src/js/**/*.js',
 		 				'tests/**/*.spec.js'
+		 			],
+		 			exclude: [
+		 				'src/js/dest/*.js'
 		 			]
 		 		}
 		 	}
