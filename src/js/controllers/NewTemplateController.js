@@ -19,7 +19,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 	$scope.showTeacherQuestion = function() {
 		$scope.showTeacher = !$scope.showTeacher;
 	};
-	$scope.showTeacherQuestion = function() {
+	$scope.showCourseQuestion = function() {
 		$scope.showCourse = !$scope.showCourse;
 	};
 
