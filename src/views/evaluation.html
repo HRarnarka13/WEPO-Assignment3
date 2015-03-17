@@ -2,7 +2,7 @@
     <h2 id="cID" name="cID" ng-model="cID">{{cID}} - {{title}}</h2>
     <div class="alert alert-info" role="alert">{{introText}}</div>
 </div>
-<form name="evaluationForm" ng-submit="submitAnswers()">
+<form name="evaluationForm" ng-model="form" ng-submit="submitAnswers()">
     <!-- CoursesQuestions -->
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -10,11 +10,12 @@
                 <h3 class="panel-title">Um tímana</h3>
             </div>
             <div class="panel-body">	
-                <evaluation-question ng-repeat="cq in courseQuestions track by $index"
+                <evaluation-question ng-repeat="cq in courseQuestions track by $index" 
                             question="cq"></evaluation-question>
             </div>
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="teacher in teachers">
+                <li class="list-group-item" 
+                    ng-repeat="teacher in teachers">
                     <div class="media">
                         <div class="media-left">
                             <a href="#">

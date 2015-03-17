@@ -23,14 +23,18 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 	Dispatch.getTeachers($scope.cID, $scope.semesterID).success(function (data) {
 		// console.log(data);
 		$scope.teachers = data;
+
+		var size = $scope.courseQuestions.length + ($scope.teacherQuestions.length *  $scope.teachers.length);
 	});
-    
+	
     $scope.submitAnswers = function () {
-        if($scope.evaluationForm.$valid){
+        if($scope.evaluationForm.$valid) {
             console.log('Answers:');
-            console.log($scope.evaluationForm);
-        }
-        // console.log($scope.evaluationForm);
+            // console.log($scope.evaluationForm);
+
+            // fa gogn 
+            console.log($scope);
+    	}
     };
 	
 }]);
