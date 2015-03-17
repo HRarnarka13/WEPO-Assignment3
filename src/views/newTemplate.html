@@ -13,6 +13,10 @@
 				Intro Text:
 				<input type="text" ng-model="introText">
 			</li>
+			<li class="list-group-item">
+				Intro Text (english):
+				<input type="text" ng-model="introTextEN">
+			</li>
 		</ul>
 		<button class="btn btn-primary" ng-click="showTeacherQuestion()">Teacher Question</button>
 		<button class="btn btn-primary" ng-click="showCourseQuestion()">Course Question</button>
@@ -23,7 +27,7 @@
 </div>
 
 <div class="col-md-6" ng-show="showCourse">
-	<form name="newCourseQuestion" ng-submit="createTemplate()">
+	<form name="newQuestion" ng-submit="addCourseQuestion()" novalidate>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="panel-title">Course Question</h1>
@@ -32,11 +36,11 @@
 				<ul class="list-group">
 					<li class="list-group-item">
 						Text:
-						<input type="text" ng-model="questionText">
+						<input type="text" ng-model="courseQuestion.text">
 					</li>
 					<li class"list-group-item">
 						Type of answer:
-						<select ng-model="answerType">
+						<select ng-model="courseQuestion.answerType">
 							<optgroup label="Type of answer?">
 								<option value="text">Text</option>
 								<option value="single">Single</option>
@@ -55,7 +59,7 @@
 </div>
 
 <div class="col-md-6" ng-show="showTeacher">
-	<form name="newTeacherQuestion" ng-submit="createTemplate()">
+	<form name="newQuestion" ng-submit="addTeacherQuestion()" novalidate>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="panel-title">Teacher Question</h1>
@@ -64,11 +68,11 @@
 				<ul class="list-group">
 					<li class="list-group-item">
 						Text:
-						<input type="text" ng-model="questionText">
+						<input type="text" ng-model="teacherQuestion.text">
 					</li>
 					<li class"list-group-item">
 						Type of answer:
-						<select ng-model="answerType">
+						<select ng-model="teacherQuestion.answerType">
 							<optgroup label="Type of answer?">
 								<option value="text">Text</option>
 								<option value="single">Single</option>

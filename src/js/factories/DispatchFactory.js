@@ -22,9 +22,9 @@ function ($http, SERVER_URL) {
 		postEvaluation: function (ID, startDate, endDate) {
 			return $http.post(SERVER_URL + '/evaluations', {TemplateID: ID, StartDate: startDate, EndDate: endDate});
 		},
-		/*postEvaluationTemplates: function (ID, title, titleEN, introText, introTextEN, courseQuestions, teacherQuestions) {
-			return $http.post(SERVER_URL + '/evaluationtemplates/', {ID: ID, Title: title, TitleEN: titleEN, IntroText: introText, IntroTextEN: introTextEn, CourseQuestions: courseQuestions, TeacherQuestions: teacherQuestions});
-		},*/
+		postEvaluationTemplate: function (title, introText, introTextEN, courseQuestions, teacherQuestions) {
+			return $http.post(SERVER_URL + '/evaluationtemplates/', {Title: title, TitleEN: title, IntroText: introText, IntroTextEN: introTextEN, CourseQuestions: courseQuestions, TeacherQuestions: teacherQuestions});
+		},
 		// User functions
 		getMyEvaluations: function () {
 			return $http.get(SERVER_URL + '/my/evaluations');
@@ -38,5 +38,5 @@ function ($http, SERVER_URL) {
 	};
 }]);
 
-// angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/h28/api/v1");
-angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/demo/api/v1");
+angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/h28/api/v1");
+//angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/demo/api/v1");
