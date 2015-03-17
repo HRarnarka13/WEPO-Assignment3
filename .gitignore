@@ -2,6 +2,6 @@ node_modules/
 bower_components/
 EvaluationAPI/
 coverage/
-src/*/dest/
 .DS_Store
 npm-debug.log
+src/*/dest/
