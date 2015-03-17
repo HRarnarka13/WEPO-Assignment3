@@ -41,7 +41,10 @@ describe('LoginController', function () {
 		beforeEach(function() {
 			$scope = {
 				username: '',
-				password: ''
+				password: '',
+				loginForm: {
+					$valid: true
+				} 
          };
 
 			spyOn(mockLogin, 'login').and.callThrough();

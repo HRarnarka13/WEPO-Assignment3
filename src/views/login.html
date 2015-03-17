@@ -11,15 +11,26 @@
 					<div class="form-group" 
 						 ng-class="{ 'has-error': loginForm.username.$invalid && !loginForm.username.$pristine}">
 						<label>Username</label>
-						<input type="text" class="form-control" name="username" ng-model="username" autofocus required/>
-						<p ng-show="loginForm.username.$invalid && !loginForm.username.$pristine" class="help-block">Username is required.</p>
+						<input type="text" 
+								class="form-control" 
+								name="username" ng-model="username" 
+								autofocus required/>
+						<p ng-show="loginForm.username.$invalid && !loginForm.username.$pristine" 
+							class="help-block">Username is required.</p>
 					</div>
 					<div class="form-group">
 						<label for="password" class="control-label">Password</label>
-						<input type="password" class="form-control" id="password" name="password" ng-model="password" required/>
-						<p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" class="help-block">Password is required.</p>
+						<input type="password" 
+								class="form-control" 
+								id="password" 
+								name="password" 
+								ng-model="password" required/>
+						<p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" 
+							class="help-block">Password is required.</p>
 					</div>
-					<button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Login</button>
+					<button type="submit" 
+							class="btn btn-primary" 
+							ng-disabled="loginForm.$invalid">Login</button>
 				</form>
 			</div>
 		</div>
