@@ -29,42 +29,41 @@ describe('LoginController', function () {
 		}
 	};
 
-	beforeEach(inject(function (_$controller_, _$rootScope_, _$location_) {
-		$controller = _$controller_;
-		$rootScope = _$rootScope_;
-		$location = _$location_;
-	}));
+	beforeEach(inject(function (_$controller_, _$location_, _$rootScope_) {
+        $controller = _$controller_;
+        $location = _$location_;
+        $rootScope = _$rootScope_;
+    }));
 
 	describe('$scope.login', function () {
-		var $scope, controller;
+        var $scope, controller;
 
-		beforeEach(function() {
-			$scope =  {
-				username: '',
-				password: '',
-				errorMessage: '',
-				loginForm: {
-					$valid: true
-				}
-			};
+        beforeEach(function() {
+            // Constructing a fake enviroment
+            $scope = {
+            	loginForm: { $valid: true },
+            	username: '',
+            	password: ''
+            };
 
-			spyOn(mockLogin, 'login').and.callThrough();
-			spyOn($location, 'path');
+            // Spying on functions that should or shouldn't be called
+            spyOn(mockLogin, 'login').and.callThrough();
+            spyOn($location, 'path');
 
-			controller = $controller('LoginController', { 
-				$scope: $scope,
-				LoginFactory: mockLogin,
-				$rootScope: $rootScope,
-				$location : $location,
-			});
-		});
+            // Constructing the controller
+            controller = $controller('LoginController', {
+                $scope: $scope,
+                LoginFactory: mockLogin,
+                $location : $location,
+                $rootScope : $rootScope
+            });
+        });
 
 		// the tests :
 		it('should fail the login because of invalid user', function() {
 			$scope.username = 'rassiprump';
 			$scope.password = '123456';
-			console.log($scope.login);
-			console.log($scope.login());
+			
 			$scope.login();
 
 			expect($scope.failToLogin).toBeTruthy();
