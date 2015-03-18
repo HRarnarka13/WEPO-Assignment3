@@ -25,6 +25,25 @@
 			</ul>
 			<button class="btn btn-primary" ng-click="showTeacherQuestion()">Teacher Question</button>
 			<button class="btn btn-primary" ng-click="showCourseQuestion()">Course Question</button>
+			<form name="submittedQuestions">
+				<ul class="list-group" ng-repeat="question in courseQuestions">
+					<li class="list-group-item">
+						{{question.text}}
+					</li>
+					<li class="list-group-item">
+						Answer Type:
+						{{question.answerType}}
+					</li>
+				</ul>
+				<ul class="list-group" ng-repeat="question in teacherQuestions">
+					<li class="list-group-item">
+						{{question.text}}
+					</li>
+					<li class="list-group-item">
+						Answer Type:
+						{{question.answerType}}
+				</ul>
+			</form>
 		</div>
 		<div class="panel-footer">
 			<button class="btn btn-success" ng-click="createTemplate()">Create Template</button>
