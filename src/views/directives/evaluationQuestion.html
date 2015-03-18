@@ -2,12 +2,15 @@
 	<label>{{question.Text}}</label>
 	<textarea type="text"
 		id="{{teacher.SSN + '-' + question.ID}}"
+		name="{{teacher.SSN + '-' + question.ID}}"
 		ng-model="questionAnswer"
 		ng-model-options="{ updateOn: 'blur' }"
 		ng-change="updateAnswer()"
 	 	class="form-control"
 		placeholder="Svar..."  
-		ng-show="question.Type==='text'"></textarea>
+		ng-show="question.Type==='text'"
+		ng-required="question.Type === 'text'"
+		></textarea>
 
 	<div ng-show="question.Type==='single'">
 	    <label class="radio-inline" ng-repeat="answer in question.Answers">
@@ -17,7 +20,9 @@
 	        		ng-change="updateAnswer()"
 	        		id="{{teacher.SSN + '-' + question.ID}}"
 	             	name="{{teacher.SSN + '-' + question.ID}}"
-					value="{{answer.Text}}">{{answer.Text}}
+					value="{{answer.Text}}"
+					nq-required="question.Type === 'single'">{{answer.Text}}
+
 	    </label>
 	</div>
 	<div ng-show="question.Type==='multiple'">
@@ -27,7 +32,9 @@
 	        		ng-model-options="{ updateOn: 'blur' }"
 	        		ng-change="updateAnswer()"
 	             	id="{{teacher.SSN + '-' + question.ID}}" 
-	               	value="{{answer.Text}}">{{answer.Text}}
+	             	name="{{teacher.SSN + '-' + question.ID}}"
+	               	value="{{answer.Text}}"
+	               	nq-required="question.Type === 'multiple'">{{answer.Text}}
 	    </label>
 	</div>
 </div>

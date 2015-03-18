@@ -18,11 +18,11 @@
                     ng-repeat="teacher in teachers">
                     <div class="media">
                         <div class="media-left">
-                            <a href="#">
+                            <div>
                                 <img class="media-object img-rounded" 
                                     src="{{teacher.ImageURL}}" 
                                     alt="{{teacher.FullName}}">
-                            </a>
+                            </div>
                         </div>
                     <div class="media-body">
                         <h4 class="media-heading">{{teacher.FullName}}</h4>
@@ -34,7 +34,7 @@
                 </li>
             </ul>
             <div class="panel-footer">
-                <button class="btn btn-primary">Svara</button>
+                <button class="btn btn-primary" ng-disabled="evaluationForm.$invalid">Svara</button>
             </div>
         </div>
     </div>
