@@ -1,4 +1,4 @@
-<h1>NEW TEMPLATE</h1>
+<h2>NEW TEMPLATE</h2>
 <div class="col-md-6">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -74,6 +74,7 @@
 	</div>
 </div>
 
+
 <div class="col-md-6" >
 	<form name="newCourseQuestion" ng-submit="addCourseQuestion()" novalidate>
 		<div class="panel panel-default">
@@ -111,7 +112,6 @@
 		</div>
 	</form>
 </div>
-
 <div class="col-md-6">
 	<form name="newTeacherQuestion" 
 		ng-submit="addTeacherQuestion()" 
@@ -139,8 +139,10 @@
 					ng-show="teacherQuestion.Type === 'single' || teacherQuestion.Type === 'multiple'">
 					<label>Answer choices:</label>
 					<p class="text-info">Separate answers with a comma (,) like so: Good, Okay, Bad</p>
-					<input type="text" class="form-control" ng-model="TchoicesIce" ng-list placeholder="Choices in icelandic" required>
-					<input type="text" class="form-control" ng-model="TchoicesEn" ng-list placeholder="Choices in english" required>
+					<input type="text" class="form-control" ng-model="TchoicesIce" ng-list placeholder="Choices in icelandic"
+						ng-required=" teacherQuestion.Type === 'single' || teacherQuestion.Type === 'multiple' " >
+					<input type="text" class="form-control" ng-model="TchoicesEn" ng-list placeholder="Choices in english"
+						ng-required=" teacherQuestion.Type === 'single' || teacherQuestion.Type === 'multiple' " >
 				</div>
 			</div>
 			<div class="panel-footer">

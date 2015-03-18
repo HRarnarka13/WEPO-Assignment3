@@ -7,6 +7,10 @@ angular.module('TeachingEvaluations').controller('NewTemplateController', [
 	'AdminFactory',
 function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 
+	$scope.title = "";
+	$scope.titleEN = "";
+	$scope.introText = "";
+	$scope.introTextEN = "";
 	$scope.showTeacher = false;
 	$scope.showCourse = false;
 	$scope.courseQuestions = [];
@@ -21,16 +25,26 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		TextEN: "",
 		Type: "text"
 	};
+	$scope.errorMessage ="";
 
 
 
 	$scope.createTemplate = function () {
-		AdminFactory.postEvaluationTemplate($scope.title, $scope.titleEN, $scope.introText, $scope.introTextEN, $scope.courseQuestions, $scope.teacherQuestions).success(function (data){
-			$location.path('/admin/evaluations/');
-		});
-		console.log($scope.courseQuestions);
-		console.log($scope.teacherQuestions);
-		console.log("createTemplate");
+		$scope.submitted = true;
+		if($scope.title === "" || $scope.titleEN === "" || $scope.introText === "" || $scope.introTextEN === "") {
+			$scope.errorMessage = "Title or Intro text are missing";
+		}
+		else if($scope.courseQuestions.length === 0 && $scope.teacherQuestions.length === 0){
+			$scope.errorMessage = "Template must contain at least one question";
+		}
+		else {
+			AdminFactory.postEvaluationTemplate($scope.title, $scope.titleEN, $scope.introText, $scope.introTextEN, $scope.courseQuestions, $scope.teacherQuestions).success(function (data){
+				$location.path('/admin/evaluations/');
+			});
+			console.log($scope.courseQuestions);
+			console.log($scope.teacherQuestions);
+			console.log("createTemplate");
+		}
 	};
 	$scope.addTeacherQuestion = function() {
 		var newQuestion;

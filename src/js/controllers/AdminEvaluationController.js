@@ -6,8 +6,6 @@ angular.module('TeachingEvaluations').controller('AdminEvaluationController', [
 	'$http',
 	'AdminFactory',
 function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
-	$scope.courseID = "T­-427­-WEPO"
-	$scope.semester = "20151"
 	$scope.oneAtATime = false;
 
 	$scope.status = {
@@ -21,7 +19,4 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		$scope.courses = data.Courses;
 		console.log(data);
 	});
-
-
-
 }]);
