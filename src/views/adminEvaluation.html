@@ -1,6 +1,6 @@
 <h3>Results for {{results.TemplateTitle}}</h3>
 <accordion close-others="oneAtATime">
-	<accordion-group heading="{{course.CourseID}} - {{course.CourseName}}" 
+	<accordion-group heading="{{course.CourseID}} - {{course.CourseName}} - {{course.Semester}}" 
 				ng-repeat="course in courses track by $index">
 		<accordion close-others="oneAtATime">
 			<accordion-group heading="{{cq.Text}} - TeacherSSN: {{cq.TeacherSSN}}" 
