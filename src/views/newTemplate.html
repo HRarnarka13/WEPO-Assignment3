@@ -34,7 +34,8 @@
 					Course Questions:
 					<ul class="list-group">
 						<li class="list-group-item" ng-repeat="cq in courseQuestions track by $index">
-							Text: {{cq.Text}}
+							<p>Text: {{cq.Text}}</p>
+							<p>Text (english): {{cq.TextEn}}</p>
 							<div ng-show="cq.Type !== 'text'">
 								Choices:
 								<ul>
@@ -52,7 +53,8 @@
 					Teacher Questions:
 					<ul class="list-group">
 						<li class="list-group-item" ng-repeat="tq in teacherQuestions track by $index">
-							Text: {{tq.Text}}
+							<p>Text: {{tq.Text}}</p>
+							<p>Text (english): {{tq.TextEn}}</p>
 							<div ng-show="tq.Type !== 'text'">
 								Choices:
 								<ul>
@@ -84,8 +86,13 @@
 			<div class="panel-body">
 				<div class="form-group">
 					<label for="cqtext">Text</label>
-					<input type="text" name="text" id="cqtext" ng-model="courseQuestion.text" name="cqtext" class="form-control" required>
+					<input type="text" name="cqtext" id="cqtext" ng-model="courseQuestion.Text" class="form-control" required>
 					<p ng-show="newCourseQuestion.cqtext.$invalid && !newCourseQuestion.cqtext.$pristine" class="help-block">Insert text</p>
+				</div>
+				<div class="form-group">
+					<label for="cqtextEN">Text (english)</label>
+					<input type="text" name="cqtextEN" id="cqtextEN" ng-model="courseQuestion.TextEn" class="form-control" required>
+					<p ng-show="newCourseQuestion.cqtextEN.$invalid && !newCourseQuestion.cqtextEN.$pristine" class="help-block">Insert text</p>
 				</div>
 				<div class="form-group">
 					<label>Type of answer</label>
@@ -115,21 +122,25 @@
 <div class="col-md-6">
 	<form name="newTeacherQuestion" 
 		ng-submit="addTeacherQuestion()" 
-		novalidate
-		ng-class="{ 'has-error': newTeacherQuestion.cqtext.$invalid && !newTeacherQuestion.cqtext.$pristine}">
+		novalidate>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="panel-title">Teacher Question</h1>
 			</div>
 			<div class="panel-body">
 				<div class="form-group">
-					<label for="cqtext">Text</label>
-					<input type="text" name="text" id="cqtext" ng-model="teacherQuestion.text" name="cqtext" class="form-control" required>
-					<p ng-show="newTeacherQuestion.cqtext.$invalid && !newTeacherQuestion.cqtext.$pristine" class="help-block">Insert text</p>
+					<label for="tqtext">Text</label>
+					<input type="text" id="tqtext" ng-model="teacherQuestion.Text" name="tqtext" class="form-control" required>
+					<p ng-show="newTeacherQuestion.tqtext.$invalid && !newTeacherQuestion.tqtext.$pristine" class="help-block">Insert text</p>
+				</div>
+				<div class="form-group">
+					<label for="tqtextEN">Text (english)</label>
+					<input type="text" name="tqtextEN" id="tqtextEN" ng-model="teacherQuestion.TextEn" class="form-control" required>
+					<p ng-show="newTeacherQuestion.tqtext.$invalid && !newTeacherQuestion.tqtext.$pristine" class="help-block">Insert text</p>
 				</div>
 				<div class="form-group">
 					<label>Type of answer</label>
-					<select ng-model="teacherQuestion.Type" name="courseQuestionAnswerType" required>
+					<select ng-model="teacherQuestion.Type" name="teacherQuestionAnswerType" required>
 							<option value="text">Text</option>
 							<option value="single">Single</option>
 							<option value="multiple">Multiple</option>

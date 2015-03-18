@@ -60,15 +60,18 @@ it's also used for pre-compiling less to css, to run jshint, concat and uglify u
 
 >`grunt`
 
-following are more possible grunt tasks\n
-`grunt checkjs` to run jshint\n
-`grunt minify` to uglify\n
-`grunt makeonefile` to concat\n
-`grunt makejs` to concat and uglify
+following are more possible grunt tasks
+
+>`grunt checkjs`
+to run jshint
+>`grunt minify` 
+to uglify
+>`grunt makeonefile`
+to concat
+>`grunt makejs` 
+to concat and uglify
 
 To see code coverage go to index.html file in `coverage/"name of browser"`
 
 ##Authors
-Arnar Kári, arnarka13@ru.is\n
-Freyr, freyr12@ru.is\n
-Sara Á, saraa12@ru.is
+Arnar Kári arnarka13@ru.is, Freyr freyr12@ru.is, Sara Á saraa12@ru.is

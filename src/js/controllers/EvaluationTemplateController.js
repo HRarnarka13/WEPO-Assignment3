@@ -35,9 +35,6 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		});
 	};
 
-	$scope.toggle = function(){
-		$scope.showQuestion = !$scope.showQuestion;
-	};
 	$scope.toggle2 = function(){
 		$scope.showEvaluation = !$scope.showEvaluation;
 	};

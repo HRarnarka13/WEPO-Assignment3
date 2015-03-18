@@ -17,13 +17,19 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 	$scope.courseQuestion = {
 		Text: "",
 		TextEN: "",
-		Type: "text"
+		Type: "text",
+		ImageURL: "",
+		Answers: {
+		}
 	};
 	$scope.teacherQuestions = [];
 	$scope.teacherQuestion = {
 		Text: "",
 		TextEN: "",
-		Type: "text"
+		Type: "text",
+		ImageURL: "",
+		Answers: {
+		}
 	};
 	$scope.errorMessage ="";
 
@@ -72,6 +78,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		$scope.teacherQuestions.push(newQuestion);
 		console.log($scope.teacherQuestions);
 		$scope.teacherQuestion.Text = "";
+		$scope.teacherQuestion.TextEn = "";
 		$scope.teacherQuestion.Type = "text";
 		$scope.showTeacher = !$scope.showTeacher;
 	};
@@ -105,14 +112,8 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		$scope.courseQuestions.push(newQuestion);
 		console.log($scope.courseQuestions);
 		$scope.courseQuestion.Text = "";
+		$scope.courseQuestion.TextEn ="";
 		$scope.courseQuestion.Type = "text";
-		$scope.showCourse = !$scope.showCourse;
-	};
-
-	$scope.showTeacherQuestion = function() {
-		$scope.showTeacher = !$scope.showTeacher;
-	};
-	$scope.showCourseQuestion = function() {
 		$scope.showCourse = !$scope.showCourse;
 	};
 

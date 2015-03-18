@@ -19,6 +19,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, UserFactory, Answe
 		$scope.title = data.Title;
 		$scope.courseQuestions = data.CourseQuestions;
 		$scope.teacherQuestions = data.TeacherQuestions;
+		console.log(data);
 		// console.log($scope.courseQuestions);
 	});
 
@@ -40,7 +41,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, UserFactory, Answe
             		$location.path('/evaluations/' + LoginFactory.getUser());
             	})
             	.error(function (data) {
-            		console.log('Something when wrong! Could\'t submit answers');
+            		console.log('Something when wrong! Couldn\'t submit answers');
             		console.log(data);
             	});
     	}
