@@ -1,4 +1,6 @@
-angular.module("TeachingEvaluations").directive('evaluationQuestion', function() {
+angular.module("TeachingEvaluations").directive('evaluationQuestion', [
+	'AnswersFromStudent',
+function ( AnswersFromStudent ) {
 	return {
 		restrict: 'E',
 		require: '^form',
@@ -6,28 +8,24 @@ angular.module("TeachingEvaluations").directive('evaluationQuestion', function()
 		templateUrl: 'src/views/evaluationQuestion.html',
 		scope: {
 			question: '=',
-			teacher: '='
+			teacher: '=',
+			answers: '='
 		},
 		controller: function($scope) {
-      		// console.log($scope);
       		$scope.questionAnswer = '';
       		if ($scope.teacher === undefined) {
       			$scope.SSN = undefined;
       		} else {
       			$scope.SSN = $scope.teacher.SSN;
       		}
+
+      		$scope.updateAnswer = function () {
+				// Add a answer to the factory	
+				AnswersFromStudent.addAnswer($scope.question.ID, $scope.SSN, $scope.questionAnswer);
+			};
   		},
 		link : function (scope) {
-			console.log(scope);
-			// console.log("questionAnswer " + scope.questionAnswer);
 
-			var answer = {
-				ID: scope.question.ID,
-				SSN: scope.SSN,
-				Value: scope.questionAnswer
-			};
-
-			console.log(answer);
 		}
 	};
-});
+}]);

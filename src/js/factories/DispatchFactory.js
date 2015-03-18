@@ -23,7 +23,15 @@ function ($http, SERVER_URL) {
 			return $http.post(SERVER_URL + '/evaluations', {TemplateID: ID, StartDate: startDate, EndDate: endDate});
 		},
 		postEvaluationTemplate: function (title, titleEN, introText, introTextEN, courseQuestions, teacherQuestions) {
-			return $http.post(SERVER_URL + '/evaluationtemplates/', {Title: title, TitleEN: titleEN, IntroText: introText, IntroTextEN: introTextEN, CourseQuestions: courseQuestions, TeacherQuestions: teacherQuestions});
+			var data = {
+				Title: title,
+				TitleEN: titleEN, 
+				IntroText: introText, 
+				IntroTextEN: introTextEN, 
+				CourseQuestions: courseQuestions, 
+				TeacherQuestions: teacherQuestions
+			}
+			return $http.post(SERVER_URL + '/evaluationtemplates/', data);
 		},
 		// User functions
 		getMyEvaluations: function () {
@@ -34,9 +42,13 @@ function ($http, SERVER_URL) {
 		},
 		getTeachers: function (courseID, semesterID) {
 			return $http.get(SERVER_URL + '/courses/' + courseID + '/' + semesterID + '/teachers');
+		},
+		postEvaluationAnswer: function (courseID, semesterID, evalID, answers) {
+			return $http.post(SERVER_URL + '/courses/' + courseID + '/' + semesterID + '/evaluations/' + evalID, answers);
+			// api/v1/courses/:courseID/:semesterID/evaluations/:evalID - POST
 		}
 	};
 }]);
 
-angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/h28/api/v1");
-//angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/demo/api/v1");
+//angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/h28/api/v1");
+angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/demo/api/v1");

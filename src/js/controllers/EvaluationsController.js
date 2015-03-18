@@ -10,6 +10,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 	$scope.courses = []; // Array of avaible courses to evaluate
 
 	Dispatch.getMyEvaluations().success(function (data) {
+		// console.log(data);
 		for (var i = 0; i < data.length; i++) {
 			if (!isRegistered(data[i].CourseID)) {
 				var course = {

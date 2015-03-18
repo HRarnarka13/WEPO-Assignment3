@@ -5,14 +5,15 @@ angular.module('TeachingEvaluations').controller('EvaluationController', [
 	'$routeParams',
 	'$http',
 	'Dispatch',
-function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) { 
+	'AnswersFromStudent',
+function ($scope, $location, $rootScope, $routeParams, $http, Dispatch, AnswersFromStudent) { 
 	$scope.username = $routeParams.user;
 	$scope.cID = $routeParams.courseID;
 	$scope.semesterID = $routeParams.semesterID;
 	$scope.evalID = $routeParams.evalID;
 
 	Dispatch.getMyEvaluation($scope.cID, $scope.semesterID, $scope.evalID).success(function (data) {
-		console.log(data);
+		// console.log(data);
 		$scope.introText = data.IntroText;
 		$scope.title = data.Title;
 		$scope.courseQuestions = data.CourseQuestions;
@@ -20,21 +21,26 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 		// console.log($scope.courseQuestions);
 	});
 
+	// Get list of teachers for the current course and semester
 	Dispatch.getTeachers($scope.cID, $scope.semesterID).success(function (data) {
-		// console.log(data);
 		$scope.teachers = data;
-
-		var size = $scope.courseQuestions.length + ($scope.teacherQuestions.length *  $scope.teachers.length);
 	});
 	
     $scope.submitAnswers = function () {
         if($scope.evaluationForm.$valid) {
             console.log('Answers:');
             // console.log($scope.evaluationForm);
-
-            // fa gogn 
-            console.log($scope);
-    	}
-    };
-	
+            //postEvaluationAnswer: function (courseID, semesterID, evalID, answers) {
+            $scope.answers = AnswersFromStudent.getAnswers();
+            console.log($scope.answers);
+            Dispatch.postEvaluationAnswer($scope.cID, $scope.semesterID, $scope.evalID, $scope.answers)
+            	.success(function (data) {
+            		AnswersFromStudent.resetAnswers();
+            		$location.path('/evaluations/' + $scope.username);
+            	})
+            	.error(function (data) {
+            		console.log('Something when wrong! Could\'t submit answers');
+            		console.log(data);
+            	});
+    	}	
 }]);
