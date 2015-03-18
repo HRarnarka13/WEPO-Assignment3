@@ -11,7 +11,7 @@
 					<input type="text" ng-model="title" class="form-control">
 				</li>
 				<li class="list-group-item">
-					Title (english):
+					Title (English):
 					<input type="text" ng-model="titleEN" class="form-control">
 				</li>
 				<li class="list-group-item">
@@ -19,39 +19,45 @@
 					<input type="text" ng-model="introText" class="form-control">
 				</li>
 				<li class="list-group-item">
-					Intro Text (english):
+					Intro Text (English):
 					<input type="text" ng-model="introTextEN" class="form-control">
 				</li>
+				<li class="list-group-item" ng-repeat="cq in courseQuestions track by $index">
+					Course Question {{$index + 1}}
+					<div class="form-group" >
+						<label>Text:</label>
+						<input type="text" class="form-control" ng-model="cq.Text">
+						<div ng-show="cq.Type !== 'text'">
+							<label>Choices</label>
+							<input type="text" class="form-control" ng-model="cq.Answers.Text" ng-list>
+							<label>Choices (English): </label>
+							<input type="text" class="form-control" ng-model="cq.Answers.TextEN" ng-list>
+						</div>
+					</div>
+				</li>
+				<li class="list-group-item" ng-repeat="tq in teacherQuestions track by $index">
+					Teacher Question {{$index + 1}}
+					<div class="form-group" >
+						<label>Text:</label>
+						<input type="text" class="form-control" ng-model="tq.Text">
+						<div ng-show="tq.Type !== 'text'">
+							<label>Choices</label>
+							<input type="text" class="form-control" ng-model="tq.Answers.Text" ng-list>
+							<label>Choices (English): </label>
+							<input type="text" class="form-control" ng-model="tq.Answers.TextEN" ng-list>
+						</div>
+					</div>
+				</li>
 			</ul>
-			<button class="btn btn-primary" ng-click="showTeacherQuestion()">Teacher Question</button>
-			<button class="btn btn-primary" ng-click="showCourseQuestion()">Course Question</button>
-			<form name="submittedQuestions">
-				<ul class="list-group" ng-repeat="question in courseQuestions">
-					<li class="list-group-item">
-						{{question.text}}
-					</li>
-					<li class="list-group-item">
-						Answer Type:
-						{{question.answerType}}
-					</li>
-				</ul>
-				<ul class="list-group" ng-repeat="question in teacherQuestions">
-					<li class="list-group-item">
-						{{question.text}}
-					</li>
-					<li class="list-group-item">
-						Answer Type:
-						{{question.answerType}}
-				</ul>
-			</form>
 		</div>
+
 		<div class="panel-footer">
 			<button class="btn btn-success" ng-click="createTemplate()">Create Template</button>
 		</div>
 	</div>
 </div>
 
-<div class="col-md-6" ng-show="showCourse">
+<div class="col-md-6" >
 	<form name="newQuestion" ng-submit="addCourseQuestion()" novalidate>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -61,17 +67,25 @@
 				<ul class="list-group">
 					<li class="list-group-item">
 						Text:
-						<input type="text" ng-model="courseQuestion.text" class="form-control">
+						<input type="text" ng-model="courseQuestion.Text" class="form-control">
 					</li>
 					<li class="list-group-item">
 						Type of answer:
-						<select ng-model="courseQuestion.answerType">
+						<select ng-model="courseQuestion.Type">
 							<optgroup label="Type of answer?">
 								<option value="text">Text</option>
 								<option value="single">Single</option>
 								<option value="multiple">Multiple</option>
 							</optgroup>
 						</select>
+					</li>
+					<li class="list-group-item" ng-show="courseQuestion.Type === 'single' || courseQuestion.Type === 'multiple'"> 
+						<div class="form-group" >
+							<label>Answer choices:</label>
+							<p class="text-info">Separate answers with a comma (,) like so: Good, Okay, Bad</p>
+							<input type="text" class="form-control" ng-model="CchoicesIce" ng-list placeholder="Choices in icelandic">
+							<input type="text" class="form-control" ng-model="CchoicesEn" ng-list placeholder="Choices in english">
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -83,7 +97,7 @@
 	</form>
 </div>
 
-<div class="col-md-6" ng-show="showTeacher">
+<div class="col-md-6">
 	<form name="newQuestion" ng-submit="addTeacherQuestion()" novalidate>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -93,17 +107,31 @@
 				<ul class="list-group">
 					<li class="list-group-item">
 						Text:
-						<input type="text" ng-model="teacherQuestion.text" class="form-control">
+						<input type="text" ng-model="teacherQuestion.Text" class="form-control">
 					</li>
 					<li class="list-group-item">
 						Type of answer:
-						<select ng-model="teacherQuestion.answerType">
+						<select ng-model="teacherQuestion.Type">
 							<optgroup label="Type of answer?">
 								<option value="text">Text</option>
 								<option value="single">Single</option>
 								<option value="multiple">Multiple</option>
 							</optgroup>
 						</select>
+					</li>
+					<li class="list-group-item" ng-show="teacherQuestion.Type === 'single' || teacherQuestion.Type === 'multiple'"> 
+						<div class="form-group" >
+							<label>Answer choices:</label>
+							<p class="text-info">Separate answers with a comma (,) like so: Good, Okay, Bad</p>
+							<input type="text" class="form-control" ng-model="TchoicesIce" ng-list placeholder="Choices in icelandic">
+							<ul>
+								<li ng-repeat="TchoiceIce in TchoicesIce">{{TchoiceIce}}</li>
+							</ul>
+							<input type="text" class="form-control" ng-model="TchoicesEn" ng-list placeholder="Choices in english">
+							<ul>
+								<li ng-repeat="TchoiceEn in TchoicesEn">{{TchoiceEn}}</li>
+							</ul>
+						</div>
 					</li>
 				</ul>
 			</div>
