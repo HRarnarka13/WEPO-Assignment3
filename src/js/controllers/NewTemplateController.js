@@ -33,7 +33,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 			$scope.errorMessage = "Title or Intro text are missing";
 		}
 		else if($scope.courseQuestions.length === 0 && $scope.teacherQuestions.length === 0){
-			$scope.errorMessage = "Template must contain at least one question"
+			$scope.errorMessage = "Template must contain at least one question";
 		}
 		else {
 			AdminFactory.postEvaluationTemplate($scope.title, $scope.titleEN, $scope.introText, $scope.introTextEN, $scope.courseQuestions, $scope.teacherQuestions).success(function (data){
