@@ -30,7 +30,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		console.log("Before dispatch");
 		var start = $scope.startDate.toISOString();
 		var end = $scope.endDate.toISOString();
-		Dispatch.postEvaluation($routeParams.ID, start, end).success(function (data){
+		AdminFactory.postEvaluation($routeParams.ID, start, end).success(function (data){
 			$location.path('/admin/evaluations/');
 		});
 	};
