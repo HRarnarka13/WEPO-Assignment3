@@ -4,11 +4,11 @@ angular.module('TeachingEvaluations').controller('AdminEvaluationController', [
 	'$rootScope',
 	'$routeParams',
 	'$http',
-	'Dispatch',
-function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
+	'AdminFactory',
+function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 
 
-	Dispatch.getEvaluation($routeParams.evalID).success(function (data) {
+	AdminFactory.getEvaluation($routeParams.evalID).success(function (data) {
 		console.log(data);
 	});
 

@@ -52,7 +52,7 @@ describe('LoginController', function () {
 
 			controller = $controller('LoginController', { 
 				$scope: $scope,
-				Dispatch: mockLogin,
+				LoginFactory: mockLogin,
 				$rootScope: $rootScope,
 				$location : $location,
 			});

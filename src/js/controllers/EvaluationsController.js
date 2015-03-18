@@ -4,12 +4,12 @@ angular.module("TeachingEvaluations").controller('EvaluationsController', [
 	'$rootScope',
 	'$routeParams',
 	'$http',
-	'Dispatch',
-function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) { 
+	'UserFactory',
+function ($scope, $location, $rootScope, $routeParams, $http, UserFactory) { 
 	$scope.username = $routeParams.user;
 	$scope.courses = []; // Array of avaible courses to evaluate
 
-	Dispatch.getMyEvaluations().success(function (data) {
+	UserFactory.getMyEvaluations().success(function (data) {
 		// console.log(data);
 		for (var i = 0; i < data.length; i++) {
 			if (!isRegistered(data[i].CourseID)) {

@@ -4,8 +4,8 @@ angular.module('TeachingEvaluations').controller('NewTemplateController', [
 	'$rootScope',
 	'$routeParams',
 	'$http',
-	'Dispatch',
-function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
+	'AdminFactory',
+function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 
 	$scope.showTeacher = false;
 	$scope.showCourse = false;
@@ -23,7 +23,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
 
 
 	$scope.createTemplate = function () {
-		Dispatch.postEvaluationTemplate($scope.title, $scope.titleEN, $scope.introText, $scope.introTextEN, $scope.courseQuestions, $scope.teacherQuestions).success(function (data){
+		AdminFactory.postEvaluationTemplate($scope.title, $scope.titleEN, $scope.introText, $scope.introTextEN, $scope.courseQuestions, $scope.teacherQuestions).success(function (data){
 		});
 		console.log($scope.courseQuestions);
 		console.log($scope.teacherQuestions);

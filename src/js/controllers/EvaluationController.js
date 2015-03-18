@@ -4,15 +4,16 @@ angular.module('TeachingEvaluations').controller('EvaluationController', [
 	'$rootScope',
 	'$routeParams',
 	'$http',
-	'Dispatch',
+	'UserFactory',
 	'AnswersFromStudent',
-function ($scope, $location, $rootScope, $routeParams, $http, Dispatch, AnswersFromStudent) { 
+	'LoginFactory',
+function ($scope, $location, $rootScope, $routeParams, $http, UserFactory, AnswersFromStudent, LoginFactory) { 
 	$scope.username = $routeParams.user;
 	$scope.cID = $routeParams.courseID;
 	$scope.semesterID = $routeParams.semesterID;
 	$scope.evalID = $routeParams.evalID;
 
-	Dispatch.getMyEvaluation($scope.cID, $scope.semesterID, $scope.evalID).success(function (data) {
+	UserFactory.getMyEvaluation($scope.cID, $scope.semesterID, $scope.evalID).success(function (data) {
 		// console.log(data);
 		$scope.introText = data.IntroText;
 		$scope.title = data.Title;
@@ -22,7 +23,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch, AnswersF
 	});
 
 	// Get list of teachers for the current course and semester
-	Dispatch.getTeachers($scope.cID, $scope.semesterID).success(function (data) {
+	UserFactory.getTeachers($scope.cID, $scope.semesterID).success(function (data) {
 		$scope.teachers = data;
 	});
 	
@@ -33,14 +34,15 @@ function ($scope, $location, $rootScope, $routeParams, $http, Dispatch, AnswersF
             //postEvaluationAnswer: function (courseID, semesterID, evalID, answers) {
             $scope.answers = AnswersFromStudent.getAnswers();
             console.log($scope.answers);
-            Dispatch.postEvaluationAnswer($scope.cID, $scope.semesterID, $scope.evalID, $scope.answers)
+            UserFactory.postEvaluationAnswer($scope.cID, $scope.semesterID, $scope.evalID, $scope.answers)
             	.success(function (data) {
             		AnswersFromStudent.resetAnswers();
-            		$location.path('/evaluations/' + $scope.username);
+            		$location.path('/evaluations/' + LoginFactory.getUser());
             	})
             	.error(function (data) {
             		console.log('Something when wrong! Could\'t submit answers');
             		console.log(data);
             	});
-    	}	
+    	}
+    };	
 }]);

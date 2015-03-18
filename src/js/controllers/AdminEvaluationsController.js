@@ -4,17 +4,17 @@ angular.module('TeachingEvaluations').controller('AdminEvaluationsController', [
 	'$rootScope',
 	'$routeParams',
 	'$http',
-	'Dispatch',
-function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
+	'AdminFactory',
+function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 
 	// Get evaluations
-	Dispatch.getEvaluations().success(function (data) {
+	AdminFactory.getEvaluations().success(function (data) {
 		// console.log(data);
 		$scope.evaluations = data;
 	});
 
 	// Get evaluation templates
-	Dispatch.getEvaluationTemplates().success(function (data) {
+	AdminFactory.getEvaluationTemplates().success(function (data) {
 		console.log(data);
 		$scope.templates = data;
 	});

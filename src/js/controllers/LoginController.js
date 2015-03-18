@@ -4,19 +4,20 @@ angular.module("TeachingEvaluations").controller('LoginController', [
 	'$rootScope',
 	'$routeParams',
 	'$http',
-	'Dispatch',
-function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
+	'LoginFactory',
+function ($scope, $location, $rootScope, $routeParams, $http, LoginFactory) {
 	$scope.errorMessage = '';
 	$scope.username 	= '';
 	$scope.password 	= '';
 
 	$scope.login = function () {
 		if($scope.loginForm.$valid) {
-			Dispatch.login($scope.username, $scope.password)
+			LoginFactory.login($scope.username, $scope.password)
 				.success(function (data) {
 					$scope.failToLogin = false;
 					$http.defaults.headers.common.Authorization = "Basic " + data.Token;
 					$scope.role = data.User.Role;
+					LoginFactory.setUser($scope.username);
 					if($scope.role === 'admin') {
 						$location.path('/admin/evaluations/');
 					} else {

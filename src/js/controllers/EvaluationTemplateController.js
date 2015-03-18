@@ -4,11 +4,11 @@ angular.module('TeachingEvaluations').controller('EvaluationTemplateController',
 	'$rootScope',
 	'$routeParams',
 	'$http',
-	'Dispatch',
-function ($scope, $location, $rootScope, $routeParams, $http, Dispatch) {
+	'AdminFactory',
+function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 	$scope.showQuestion = false;
 	$scope.showEvaluation = false;
-	Dispatch.getEvaluationTemplate($routeParams.ID).success(function (data) {
+	AdminFactory.getEvaluationTemplate($routeParams.ID).success(function (data) {
 		$scope.template = data;
 		console.log('EvaluationTemplateController');
 		console.log(data);
