@@ -78,6 +78,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		$scope.teacherQuestions.push(newQuestion);
 		console.log($scope.teacherQuestions);
 		$scope.teacherQuestion.Text = "";
+		$scope.teacherQuestion.TextEn = "";
 		$scope.teacherQuestion.Type = "text";
 		$scope.showTeacher = !$scope.showTeacher;
 	};
@@ -111,6 +112,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		$scope.courseQuestions.push(newQuestion);
 		console.log($scope.courseQuestions);
 		$scope.courseQuestion.Text = "";
+		$scope.courseQuestion.TextEn ="";
 		$scope.courseQuestion.Type = "text";
 		$scope.showCourse = !$scope.showCourse;
 	};
