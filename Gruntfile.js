@@ -3,6 +3,8 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-karma');
+	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('jit-grunt');
 	grunt.initConfig({
 		jshint: {
 			src: ['src/js/**/*.js', '!src/js/dest/*.js'],
@@ -66,12 +68,25 @@ module.exports = function ( grunt ) {
 		 			]
 		 		}
 		 	}
+		 },
+	 	less: {
+	 		development: {
+    			options: {
+      				compress: true,
+      				yuicompress: true,
+      				optimization: 2
+    			},
+    			files: {
+      				"src/css/style.css": "src/css/style.less"
+    			}
+  			}
 		}
+		
 	});
 	grunt.registerTask('checkjs', ['jshint']);
 	grunt.registerTask('minify', ['uglify']);
 	grunt.registerTask('makeonefile', ['concat']);
 	grunt.registerTask('makejs', ['concat', 'uglify']);
 	grunt.registerTask('test', ['jshint', 'karma']);
-	grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less']);
 };
