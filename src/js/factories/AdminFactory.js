@@ -10,6 +10,9 @@ function ($http, SERVER_URL) {
 		getEvaluation: function (evalID) {
 			return $http.get(SERVER_URL + '/evaluations/' + evalID);
 		},
+		getEvaluationResults: function (course, semester, evalID) {
+			return $http.get(SERVER_URL + '/courses/' + course + '/' + semester + '/evaluations/' + evalID);
+		},
 		getEvaluationTemplates: function () {
 			return $http.get(SERVER_URL + '/evaluationtemplates/');
 		},

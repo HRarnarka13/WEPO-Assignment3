@@ -45,14 +45,14 @@ describe('LoginController', function () {
 				loginForm: {
 					$valid: true 
 				} 
-        	};
+			};
 
 			spyOn(mockLogin, 'login').and.callThrough();
 			spyOn($location, 'path');
 
 			controller = $controller('LoginController', { 
 				$scope: $scope,
-				Dispatch: mockLogin,
+				LoginFactory: mockLogin,
 				$rootScope: $rootScope,
 				$location : $location,
 			});
@@ -60,37 +60,41 @@ describe('LoginController', function () {
 
 		// the tests :
 		it('should fail the login because of invalid user', function() {
-            $scope.username = 'rassiprump';
-            $scope.password = '123456';
+			$scope.username = 'rassiprump';
+			$scope.password = '123456';
 
-            $scope.login();
+			$scope.login();
 
-            expect($scope.failToLogin).toBeTruthy();
-            expect(mockLogin.login).toHaveBeenCalled();
-            expect($location.path).not.toHaveBeenCalled();
-      });
+			expect($scope.failToLogin).toBeTruthy();
+			expect(mockLogin.login).toHaveBeenCalled();
+			expect($location.path).not.toHaveBeenCalled();
+		});
 
-      it('should succeed the login, admin login', function() {
-            $scope.username = 'admin';
-            $scope.password = '123456';
+		it('should succeed the login, admin login', function() {
+			$scope.username = 'admin';
+			$scope.password = '123456';
 
-            $scope.login();
+			$scope.login;
 
-            expect(mockLogin.login).toHaveBeenCalled();
-            expect($scope.failToLogin).not.toBeTruthy();
-            expect($scope.role).toMatch('admin');
-            expect($location.path).toHaveBeenCalled();
-      });
-      it('should succeed the login, student login', function() {
-            $scope.username = 'arnarka13';
-            $scope.password = '123456';
+			expect(mockLogin.login).toHaveBeenCalled();
+			expect($scope.failToLogin).not.toBeTruthy();
+			expect($scope.role).toMatch('admin');
+			expect($location.path).toHaveBeenCalled();
+		});
+		it('should succeed the login, student login', function() {
+			$scope.username = 'arnarka13';
+			$scope.password = '123456';
 
-            $scope.login();
+			$scope.login;
 
-            expect(mockLogin.login).toHaveBeenCalled();
-            expect($scope.failToLogin).not.toBeTruthy();
-            expect($scope.role).toMatch('student');
-            expect($location.path).toHaveBeenCalled();
-      });
+			expect(mockLogin.login).toHaveBeenCalled();
+			expect($scope.failToLogin).not.toBeTruthy();
+			expect($scope.role).toMatch('student');
+			expect($location.path).toHaveBeenCalled();
+		});
+		it('should fail the login, invalid form', function() {
+			$scope.$valid = false;
+			expect(mockLogin.login).not.toHaveBeenCalled();
+		});
 	});
 });
