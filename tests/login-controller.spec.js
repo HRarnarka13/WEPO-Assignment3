@@ -2,7 +2,7 @@ describe('LoginController', function () {
 	
 	beforeEach(module('TeachingEvaluations'));
 
-	var $controller;
+	var $controller, $location, $rootScope;
 
 	var mockLogin = {
 		login: function (user, pass) {
@@ -39,12 +39,13 @@ describe('LoginController', function () {
 		var $scope, controller;
 
 		beforeEach(function() {
-			$scope = {
+			$scope =  {
 				username: '',
 				password: '',
+				errorMessage: '',
 				loginForm: {
-					$valid: true 
-				} 
+					$valid: true
+				}
 			};
 
 			spyOn(mockLogin, 'login').and.callThrough();
@@ -62,7 +63,8 @@ describe('LoginController', function () {
 		it('should fail the login because of invalid user', function() {
 			$scope.username = 'rassiprump';
 			$scope.password = '123456';
-
+			console.log($scope.login);
+			console.log($scope.login());
 			$scope.login();
 
 			expect($scope.failToLogin).toBeTruthy();
@@ -74,7 +76,7 @@ describe('LoginController', function () {
 			$scope.username = 'admin';
 			$scope.password = '123456';
 
-			$scope.login;
+			$scope.login();
 
 			expect(mockLogin.login).toHaveBeenCalled();
 			expect($scope.failToLogin).not.toBeTruthy();
@@ -85,7 +87,7 @@ describe('LoginController', function () {
 			$scope.username = 'arnarka13';
 			$scope.password = '123456';
 
-			$scope.login;
+			$scope.login();
 
 			expect(mockLogin.login).toHaveBeenCalled();
 			expect($scope.failToLogin).not.toBeTruthy();
