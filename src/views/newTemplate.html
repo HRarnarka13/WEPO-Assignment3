@@ -5,139 +5,146 @@
 			<h1 class="panel-title">Template</h1>
 		</div>
 		<div class="panel-body">
-			<ul class="list-group">
-				<li class="list-group-item">
-					Title:
-					<input type="text" ng-model="title" class="form-control">
-				</li>
-				<li class="list-group-item">
-					Title (English):
-					<input type="text" ng-model="titleEN" class="form-control">
-				</li>
-				<li class="list-group-item">
-					Intro Text:
-					<input type="text" ng-model="introText" class="form-control">
-				</li>
-				<li class="list-group-item">
-					Intro Text (English):
-					<input type="text" ng-model="introTextEN" class="form-control">
-				</li>
-				<li class="list-group-item" ng-repeat="cq in courseQuestions track by $index">
-					Course Question {{$index + 1}}
-					<div class="form-group" >
-						<label>Text:</label>
-						<input type="text" class="form-control" ng-model="cq.Text">
-						<div ng-show="cq.Type !== 'text'">
-							<label>Choices</label>
-							<input type="text" class="form-control" ng-model="cq.Answers.Text" ng-list>
-							<label>Choices (English): </label>
-							<input type="text" class="form-control" ng-model="cq.Answers.TextEN" ng-list>
-						</div>
-					</div>
-				</li>
-				<li class="list-group-item" ng-repeat="tq in teacherQuestions track by $index">
-					Teacher Question {{$index + 1}}
-					<div class="form-group" >
-						<label>Text:</label>
-						<input type="text" class="form-control" ng-model="tq.Text">
-						<div ng-show="tq.Type !== 'text'">
-							<label>Choices</label>
-							<input type="text" class="form-control" ng-model="tq.Answers.Text" ng-list>
-							<label>Choices (English): </label>
-							<input type="text" class="form-control" ng-model="tq.Answers.TextEN" ng-list>
-						</div>
-					</div>
-				</li>
-			</ul>
+			<div class="alert alert-danger" ng-cloak ng-show="errorMessage != ''">
+					{{errorMessage}}
+			</div>
+			<form name="newTemplateTitleAndIntro" sumbit="createTemplate()" novalidate>
+				<div class="form-group"
+				ng-class="{ 'has-error': newTemplateTitleAndIntro.title.$invalid && !newTemplateTitleAndIntro.title.$pristine && submitted}">
+					<label for="title">Title</label>
+					<input type="text" ng-model="title" id="title" name="title" class="form-control" autofocus required>
+					<p ng-show="newTemplateTitleAndIntro.title.$invalid && !newTemplateTitleAndIntro.title.$pristine && submitted" class="help-block">Title is required</p>
+				</div>
+				<div class="form-group"
+				ng-class="{ 'has-error': newTemplateTitleAndIntro.titleEN.$invalid && !newTemplateTitleAndIntro.titleEN.$pristine && submitted}">
+					<label for="titleEn">Title (english)</label>
+					<input type="text" ng-model="titleEN" id="titleEn" name="titleEN" class="form-control" required>
+				</div>
+				<div class="form-group"
+				ng-class="{ 'has-error': newTemplateTitleAndIntro.introText.$invalid && !newTemplateTitleAndIntro.introText.$pristine && submitted}">
+					<label for="introText">Intro Text</label>
+					<input type="text" ng-model="introText" id="introText" name="introText" class="form-control" required>
+				</div>
+				<div class="form-group"
+				ng-class="{ 'has-error': newTemplateTitleAndIntro.introTextEN.$invalid && !newTemplateTitleAndIntro.introTextEN.$pristine && submitted}">
+					<label for="introTextEN">Intro Text (english)</label>
+					<input type="text" ng-model="introTextEN" id="introTextEN" name="introTextEN" class="form-control" required>
+				</div>
+				<div class="form-group">
+					Course Questions:
+					<ul class="list-group">
+						<li class="list-group-item" ng-repeat="cq in courseQuestions track by $index">
+							Text: {{cq.Text}}
+							<div ng-show="cq.Type !== 'text'">
+								Choices:
+								<ul>
+									<li ng-repeat="cqAT in cq.Answers.Text">{{cqAT}}</li>
+								</ul>
+								Choices (English):
+								<ul>
+									<li ng-repeat="cqATEn in cq.Answers.TextEN">{{cqATEn}}</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="form-group">
+					Teacher Questions:
+					<ul class="list-group">
+						<li class="list-group-item" ng-repeat="tq in teacherQuestions track by $index">
+							Text: {{tq.Text}}
+							<div ng-show="tq.Type !== 'text'">
+								Choices:
+								<ul>
+									<li ng-repeat="tqAT in tq.Answers.Text">{{tqAT}}</li>
+								</ul>
+								Choices (English):
+								<ul>
+									<li ng-repeat="tqATEn in tq.Answers.TextEN">{{tqATEn}}</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</form>
 		</div>
-
 		<div class="panel-footer">
-			<button class="btn btn-success" ng-click="createTemplate()">Create Template</button>
+			<button type="submit" class="btn btn-success" ng-click="createTemplate()">Create Template</button>
 		</div>
 	</div>
 </div>
 
 <div class="col-md-6" >
-	<form name="newQuestion" ng-submit="addCourseQuestion()" novalidate>
+	<form name="newCourseQuestion" ng-submit="addCourseQuestion()" novalidate>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="panel-title">Course Question</h1>
 			</div>
 			<div class="panel-body">
-				<ul class="list-group">
-					<li class="list-group-item">
-						Text:
-						<input type="text" ng-model="courseQuestion.Text" class="form-control">
-					</li>
-					<li class="list-group-item">
-						Type of answer:
-						<select ng-model="courseQuestion.Type">
-							<optgroup label="Type of answer?">
-								<option value="text">Text</option>
-								<option value="single">Single</option>
-								<option value="multiple">Multiple</option>
-							</optgroup>
-						</select>
-					</li>
-					<li class="list-group-item" ng-show="courseQuestion.Type === 'single' || courseQuestion.Type === 'multiple'"> 
-						<div class="form-group" >
-							<label>Answer choices:</label>
-							<p class="text-info">Separate answers with a comma (,) like so: Good, Okay, Bad</p>
-							<input type="text" class="form-control" ng-model="CchoicesIce" ng-list placeholder="Choices in icelandic">
-							<input type="text" class="form-control" ng-model="CchoicesEn" ng-list placeholder="Choices in english">
-						</div>
-					</li>
-				</ul>
+				<div class="form-group">
+					<label for="cqtext">Text</label>
+					<input type="text" name="text" id="cqtext" ng-model="courseQuestion.text" name="cqtext" class="form-control" required>
+					<p ng-show="newCourseQuestion.cqtext.$invalid && !newCourseQuestion.cqtext.$pristine" class="help-block">Insert text</p>
+				</div>
+				<div class="form-group">
+					<label>Type of answer</label>
+					<select ng-model="courseQuestion.Type" name="courseQuestionAnswerType" required>
+							<option value="text">Text</option>
+							<option value="single">Single</option>
+							<option value="multiple">Multiple</option>
+					</select>
+				</div>
+				<div class="form-group"
+					ng-show="courseQuestion.Type === 'single' || courseQuestion.Type === 'multiple'"> 
+					<label>Answer choices:</label>
+					<p class="text-info">Separate answers with a comma (,) like so: Good, Okay, Bad</p>
+					<input type="text" class="form-control" ng-model="CchoicesIce" ng-list placeholder="Choices in icelandic" 
+						ng-required=" courseQuestion.Type === 'single' || courseQuestion.Type === 'multiple' " >
+					<input type="text" class="form-control" ng-model="CchoicesEn" ng-list placeholder="Choices in english" 
+						ng-required=" courseQuestion.Type === 'single' || courseQuestion.Type === 'multiple' " >
+				</div>
 			</div>
 
 			<div class="panel-footer">
-				<button type="submit"class="btn btn-primary">Add Question</button>
+				<button type="submit"class="btn btn-primary" ng-disabled="newCourseQuestion.$invalid">Add Question</button>
 			</div>
 		</div>
 	</form>
 </div>
 
 <div class="col-md-6">
-	<form name="newQuestion" ng-submit="addTeacherQuestion()" novalidate>
+	<form name="newTeacherQuestion" 
+		ng-submit="addTeacherQuestion()" 
+		novalidate
+		ng-class="{ 'has-error': newTeacherQuestion.cqtext.$invalid && !newTeacherQuestion.cqtext.$pristine}">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="panel-title">Teacher Question</h1>
 			</div>
 			<div class="panel-body">
-				<ul class="list-group">
-					<li class="list-group-item">
-						Text:
-						<input type="text" ng-model="teacherQuestion.Text" class="form-control">
-					</li>
-					<li class="list-group-item">
-						Type of answer:
-						<select ng-model="teacherQuestion.Type">
-							<optgroup label="Type of answer?">
-								<option value="text">Text</option>
-								<option value="single">Single</option>
-								<option value="multiple">Multiple</option>
-							</optgroup>
-						</select>
-					</li>
-					<li class="list-group-item" ng-show="teacherQuestion.Type === 'single' || teacherQuestion.Type === 'multiple'"> 
-						<div class="form-group" >
-							<label>Answer choices:</label>
-							<p class="text-info">Separate answers with a comma (,) like so: Good, Okay, Bad</p>
-							<input type="text" class="form-control" ng-model="TchoicesIce" ng-list placeholder="Choices in icelandic">
-							<ul>
-								<li ng-repeat="TchoiceIce in TchoicesIce">{{TchoiceIce}}</li>
-							</ul>
-							<input type="text" class="form-control" ng-model="TchoicesEn" ng-list placeholder="Choices in english">
-							<ul>
-								<li ng-repeat="TchoiceEn in TchoicesEn">{{TchoiceEn}}</li>
-							</ul>
-						</div>
-					</li>
-				</ul>
+				<div class="form-group">
+					<label for="cqtext">Text</label>
+					<input type="text" name="text" id="cqtext" ng-model="teacherQuestion.text" name="cqtext" class="form-control" required>
+					<p ng-show="newTeacherQuestion.cqtext.$invalid && !newTeacherQuestion.cqtext.$pristine" class="help-block">Insert text</p>
+				</div>
+				<div class="form-group">
+					<label>Type of answer</label>
+					<select ng-model="teacherQuestion.Type" name="courseQuestionAnswerType" required>
+							<option value="text">Text</option>
+							<option value="single">Single</option>
+							<option value="multiple">Multiple</option>
+					</select>
+				</div>
+				<div class="form-group"
+					ng-show="teacherQuestion.Type === 'single' || teacherQuestion.Type === 'multiple'">
+					<label>Answer choices:</label>
+					<p class="text-info">Separate answers with a comma (,) like so: Good, Okay, Bad</p>
+					<input type="text" class="form-control" ng-model="TchoicesIce" ng-list placeholder="Choices in icelandic" required>
+					<input type="text" class="form-control" ng-model="TchoicesEn" ng-list placeholder="Choices in english" required>
+				</div>
 			</div>
-
 			<div class="panel-footer">
-				<button type="submit"class="btn btn-primary">Add Question</button>
+				<button type="submit" class="btn btn-primary" ng-disabled="newTeacherQuestion.$invalid">Add Question</button>
 			</div>
 		</div>
 	</form>

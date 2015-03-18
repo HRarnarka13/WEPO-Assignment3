@@ -13,13 +13,13 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 	$scope.courseQuestion = {
 		Text: "",
 		TextEN: "",
-		Type: ""
+		Type: "text"
 	};
 	$scope.teacherQuestions = [];
 	$scope.teacherQuestion = {
 		Text: "",
 		TextEN: "",
-		Type: ""
+		Type: "text"
 	};
 
 
@@ -58,7 +58,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		$scope.teacherQuestions.push(newQuestion);
 		console.log($scope.teacherQuestions);
 		$scope.teacherQuestion.Text = "";
-		$scope.teacherQuestion.Type = "";
+		$scope.teacherQuestion.Type = "text";
 		$scope.showTeacher = !$scope.showTeacher;
 	};
 	$scope.addCourseQuestion = function() {
@@ -91,7 +91,7 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		$scope.courseQuestions.push(newQuestion);
 		console.log($scope.courseQuestions);
 		$scope.courseQuestion.Text = "";
-		$scope.courseQuestion.Type = "";
+		$scope.courseQuestion.Type = "text";
 		$scope.showCourse = !$scope.showCourse;
 	};
 
