@@ -33,11 +33,11 @@ describe('LoginController', function () {
         $controller = _$controller_;
         $location = _$location_;
         $rootScope = _$rootScope_;
+        $scope = $rootScope.$new();
     }));
 
-	describe('$scope.login', function () {
+	describe('$$scope.login', function () {
         var $scope, controller;
-
         beforeEach(function() {
             // Constructing a fake enviroment
             $scope = {
@@ -63,7 +63,7 @@ describe('LoginController', function () {
 		it('should fail the login because of invalid user', function() {
 			$scope.username = 'rassiprump';
 			$scope.password = '123456';
-			
+
 			$scope.login();
 
 			expect($scope.failToLogin).toBeTruthy();
@@ -82,6 +82,7 @@ describe('LoginController', function () {
 			expect($scope.role).toMatch('admin');
 			expect($location.path).toHaveBeenCalled();
 		});
+
 		it('should succeed the login, student login', function() {
 			$scope.username = 'arnarka13';
 			$scope.password = '123456';
