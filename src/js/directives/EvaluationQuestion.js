@@ -5,7 +5,7 @@ function ( AnswersFromStudent ) {
 		restrict: 'E',
 		require: '^form',
 		transclude: true,
-		templateUrl: 'src/views/evaluationQuestion.html',
+		templateUrl: 'src/views/directives/evaluationQuestion.html',
 		scope: {
 			question: '=',
 			teacher: '=',

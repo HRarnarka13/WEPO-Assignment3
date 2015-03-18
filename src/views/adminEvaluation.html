@@ -1,11 +1,14 @@
-<h3>Results</h3>
-<div class="col-md-12">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Results</h3>
-		</div>
-		<div class="panel-body">
-			
-		</div>
-	</div>
-</div>	
+<h3>Results for {{results.TemplateTitle}}</h3>
+<accordion close-others="oneAtATime">
+	<accordion-group heading="{{course.CourseID}} - {{course.CourseName}}" 
+				ng-repeat="course in courses track by $index">
+		<accordion close-others="oneAtATime">
+			<accordion-group heading="{{cq.Text}} - TeacherSSN: {{cq.TeacherSSN}}" 
+							ng-repeat="cq in course.Questions track by $index">
+					<ul>
+						<li ng-repeat="cqt in cq.TextResults track by $index">{{cqt}}</li>
+					</ul>
+			</accordion-group>
+		</accordion>
+	</accordion-group>
+</accordion>

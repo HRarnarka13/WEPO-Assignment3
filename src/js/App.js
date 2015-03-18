@@ -1,4 +1,4 @@
-angular.module('TeachingEvaluations', ['ngRoute']);
+angular.module('TeachingEvaluations', ['ngRoute', 'ui.bootstrap']);
 
 angular.module('TeachingEvaluations').config(['$routeProvider',
 function ($routeProvider) {
@@ -15,5 +15,5 @@ function ($routeProvider) {
 		});
 }]);
 
-angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/h28/api/v1");
-// angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/demo/api/v1");
+// angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/h28/api/v1");
+angular.module('TeachingEvaluations').constant("SERVER_URL", "http://dispatch.ru.is/demo/api/v1");

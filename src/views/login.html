@@ -18,8 +18,9 @@
 						<p ng-show="loginForm.username.$invalid && !loginForm.username.$pristine" 
 							class="help-block">Username is required.</p>
 					</div>
-					<div class="form-group">
-						<label for="password" class="control-label">Password</label>
+					<div class="form-group"
+						ng-class="{ 'has-error': loginForm.password.$invalid && !loginForm.password.$pristine}">
+						<label>Password</label>
 						<input type="password" 
 								class="form-control" 
 								id="password" 
