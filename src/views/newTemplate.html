@@ -1,30 +1,39 @@
-<h1>NEW TEMPLATE</h1>
+<h2>NEW TEMPLATE</h2>
 <div class="col-md-6">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h1 class="panel-title">Template</h1>
 		</div>
 		<div class="panel-body">
-			<ul class="list-group">
-				<li class="list-group-item">
-					Title:
-					<input type="text" ng-model="title" class="form-control">
-				</li>
-				<li class="list-group-item">
-					Title (english):
-					<input type="text" ng-model="titleEN" class="form-control">
-				</li>
-				<li class="list-group-item">
-					Intro Text:
-					<input type="text" ng-model="introText" class="form-control">
-				</li>
-				<li class="list-group-item">
-					Intro Text (english):
-					<input type="text" ng-model="introTextEN" class="form-control">
-				</li>
-			</ul>
-			<button class="btn btn-primary" ng-click="showTeacherQuestion()">Teacher Question</button>
-			<button class="btn btn-primary" ng-click="showCourseQuestion()">Course Question</button>
+			<div class="alert alert-danger" ng-cloak ng-show="errorMessage != ''">
+					{{errorMessage}}
+			</div>
+			<form name="newTemplateTitleAndIntro" sumbit="createTemplate()" novalidate>
+				<div class="form-group"
+				ng-class="{ 'has-error': newTemplateTitleAndIntro.title.$invalid && !newTemplateTitleAndIntro.title.$pristine && submitted}">
+					<label for="title">Title</label>
+					<input type="text" ng-model="title" id="title" name="title" class="form-control" autofocus required>
+					<p ng-show="newTemplateTitleAndIntro.title.$invalid && !newTemplateTitleAndIntro.title.$pristine && submitted" class="help-block">Title is required</p>
+				</div>
+				<div class="form-group"
+				ng-class="{ 'has-error': newTemplateTitleAndIntro.titleEN.$invalid && !newTemplateTitleAndIntro.titleEN.$pristine && submitted}">
+					<label for="titleEn">Title (english)</label>
+					<input type="text" ng-model="titleEN" id="titleEn" name="titleEN" class="form-control" required>
+				</div>
+				<div class="form-group"
+				ng-class="{ 'has-error': newTemplateTitleAndIntro.introText.$invalid && !newTemplateTitleAndIntro.introText.$pristine && submitted}">
+					<label for="introText">Intro Text</labe>
+					<input type="text" ng-model="introText" id="introText" name="introText" class="form-control" required>
+				</div>
+				<div class="form-group"
+				ng-class="{ 'has-error': newTemplateTitleAndIntro.introTextEN.$invalid && !newTemplateTitleAndIntro.introTextEN.$pristine && submitted}">
+					<label for="introTextEN">Intro Text (english)</label>
+					<input type="text" ng-model="introTextEN" id="introTextEN" name="introTextEN" class="form-control" required>
+				</div>
+				<button class="btn btn-primary" ng-click="showTeacherQuestion()">Teacher Question</button>
+				<button class="btn btn-primary" ng-click="showCourseQuestion()">Course Question</button>
+			</form>
+			<br/>
 			<form name="submittedQuestions">
 				<ul class="list-group" ng-repeat="question in courseQuestions">
 					<li class="list-group-item">
@@ -46,71 +55,72 @@
 			</form>
 		</div>
 		<div class="panel-footer">
-			<button class="btn btn-success" ng-click="createTemplate()">Create Template</button>
+			<button type="submit" class="btn btn-success" ng-click="createTemplate()">Create Template</button>
 		</div>
 	</div>
 </div>
 
 <div class="col-md-6" ng-show="showCourse">
-	<form name="newQuestion" ng-submit="addCourseQuestion()" novalidate>
+	<form name="newCourseQuestion" ng-submit="addCourseQuestion()" novalidate>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="panel-title">Course Question</h1>
 			</div>
 			<div class="panel-body">
-				<ul class="list-group">
-					<li class="list-group-item">
-						Text:
-						<input type="text" ng-model="courseQuestion.text" class="form-control">
-					</li>
-					<li class="list-group-item">
-						Type of answer:
-						<select ng-model="courseQuestion.answerType">
-							<optgroup label="Type of answer?">
+				<form name="newCourseQuestion"
+				ng-class="{ 'has-error': newCourseQuestion.cqtext.$invalid && !newCourseQuestion.cqtext.$pristine}">
+					<div class="form-group">
+						<label for="cqtext">Text</label>
+						<input type="text" name="text" id="cqtext" ng-model="courseQuestion.text" name="cqtext" class="form-control" required>
+						<p ng-show="newCourseQuestion.cqtext.$invalid && !newCourseQuestion.cqtext.$pristine" class="help-block">Insert text</p>
+					</div>
+					<div class="form-group">
+						<label>Type of answer</label>
+						<select ng-model="courseQuestion.answerType" name="courseQuestionAnswerType" required>
 								<option value="text">Text</option>
 								<option value="single">Single</option>
 								<option value="multiple">Multiple</option>
-							</optgroup>
 						</select>
-					</li>
-				</ul>
+					</div>
+				</form>
 			</div>
 
 			<div class="panel-footer">
-				<button type="submit"class="btn btn-primary">Add Question</button>
+				<button type="submit"class="btn btn-primary" ng-disabled="newCourseQuestion.$invalid">Add Question</button>
 			</div>
 		</div>
 	</form>
 </div>
 
 <div class="col-md-6" ng-show="showTeacher">
-	<form name="newQuestion" ng-submit="addTeacherQuestion()" novalidate>
+	<form name="newTeacherQuestion" ng-submit="addTeacherQuestion()" novalidate>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="panel-title">Teacher Question</h1>
 			</div>
 			<div class="panel-body">
-				<ul class="list-group">
-					<li class="list-group-item">
-						Text:
-						<input type="text" ng-model="teacherQuestion.text" class="form-control">
-					</li>
-					<li class="list-group-item">
-						Type of answer:
-						<select ng-model="teacherQuestion.answerType">
-							<optgroup label="Type of answer?">
+					<div class="form-group"
+					ng-class="{ 'has-error': newTeacherQuestion.tqtext.$invalid && !newTeacherQuestion.tqtext.$pristine}">
+						<label for="tqtext">Text</label>
+						<input type="text" ng-model="teacherQuestion.text" id="tqtext" name="tqtext" class="form-control" required>
+						<p ng-show="newTeacherQuestion.tqtext.$invalid && !newTeacherQuestion.tqtext.$pristine" class="help-block">Insert text</p>
+					</div>
+					<div class="form-group">
+						<label>Type of answer</label>
+						<select ng-model="teacherQuestion.answerType" name="teacherQuestionAnswerType" required>
 								<option value="text">Text</option>
 								<option value="single">Single</option>
 								<option value="multiple">Multiple</option>
 							</optgroup>
 						</select>
-					</li>
-				</ul>
+						<div ng-show="newTeacherQuestionAnswerType.$error.required">Select answer type</div>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary" ng-disabled="newTeacherQuestion.$invalid">Add Question</button>
+					</div>
 			</div>
 
-			<div class="panel-footer">
-				<button type="submit"class="btn btn-primary">Add Question</button>
-			</div>
+			
 		</div>
 	</form>
 </div>
