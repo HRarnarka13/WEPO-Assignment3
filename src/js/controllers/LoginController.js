@@ -9,10 +9,10 @@ function ($scope, $location, $rootScope, $routeParams, $http, LoginFactory) {
 	$scope.errorMessage = '';
 	$scope.username 	= '';
 	$scope.password 	= '';
-
 	$scope.login = function () {
 		if($scope.loginForm.$valid) {
-			LoginFactory.login($scope.username, $scope.password).success(function (data) {
+			LoginFactory.login($scope.username, $scope.password).
+				success(function (data) {
 					$scope.failToLogin = false;
 					$http.defaults.headers.common.Authorization = "Basic " + data.Token;
 					$scope.role = data.User.Role;
@@ -22,12 +22,11 @@ function ($scope, $location, $rootScope, $routeParams, $http, LoginFactory) {
 					} else {
 						$location.path('/evaluations/' + $scope.username);
 					}
-				})
-				.error(function() {
+				}).
+				error(function() {
 					$scope.errorMessage = 'Username or password incorrect!';
 					$scope.failToLogin = true;
 				});
 		}
 	};
-
 }]);
