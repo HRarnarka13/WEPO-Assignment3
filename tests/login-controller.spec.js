@@ -2,9 +2,10 @@ describe('LoginController', function () {
 	
 	beforeEach(module('TeachingEvaluations'));
 
-	var $controller, $location, $rootScope;
+	var $controller;
 
 	var mockLogin = {
+		username: '',
 		login: function (user, pass) {
 			return {
 				success: function(fn){
@@ -26,44 +27,49 @@ describe('LoginController', function () {
 					};
 				}
 			};
+		},
+		setUser: function (user) {
+			return {
+				usernme: name
+			};
 		}
 	};
 
-	beforeEach(inject(function (_$controller_, _$location_, _$rootScope_) {
-        $controller = _$controller_;
-        $location = _$location_;
-        $rootScope = _$rootScope_;
-        $scope = $rootScope.$new();
-    }));
+	beforeEach(inject(function (_$controller_, _$rootScope_, _$location_) {
+		$controller = _$controller_;
+		$rootScope = _$rootScope_;
+		$location = _$location_;
+	}));
 
-	describe('$$scope.login', function () {
-        var $scope, controller;
-        beforeEach(function() {
-            // Constructing a fake enviroment
-            $scope = {
-            	loginForm: { $valid: true },
-            	username: '',
-            	password: ''
-            };
+	describe('$scope.login', function () {
+		var $scope, controller;
 
-            // Spying on functions that should or shouldn't be called
-            spyOn(mockLogin, 'login').and.callThrough();
-            spyOn($location, 'path');
+		beforeEach(function() {
+			$scope = {
+				username: '',
+				password: '',
+				loginForm: {
+					$valid: undefined 
+				} 
+			};
 
-            // Constructing the controller
-            controller = $controller('LoginController', {
-                $scope: $scope,
-                LoginFactory: mockLogin,
-                $location : $location,
-                $rootScope : $rootScope
-            });
-        });
+			spyOn(mockLogin, 'login').and.callThrough();
+			spyOn($location, 'path');
 
-		// the tests :
+			controller = $controller('LoginController', { 
+				$scope: $scope,
+				LoginFactory: mockLogin,
+				$rootScope: $rootScope,
+				$location : $location,
+			});
+		});
+
+		// the tests (5):
+
 		it('should fail the login because of invalid user', function() {
 			$scope.username = 'rassiprump';
 			$scope.password = '123456';
-
+			$scope.loginForm.$valid = true;
 			$scope.login();
 
 			expect($scope.failToLogin).toBeTruthy();
@@ -74,7 +80,7 @@ describe('LoginController', function () {
 		it('should succeed the login, admin login', function() {
 			$scope.username = 'admin';
 			$scope.password = '123456';
-
+			$scope.loginForm.$valid = true;
 			$scope.login();
 
 			expect(mockLogin.login).toHaveBeenCalled();
@@ -86,7 +92,7 @@ describe('LoginController', function () {
 		it('should succeed the login, student login', function() {
 			$scope.username = 'arnarka13';
 			$scope.password = '123456';
-
+			$scope.loginForm.$valid = true;
 			$scope.login();
 
 			expect(mockLogin.login).toHaveBeenCalled();
@@ -94,9 +100,16 @@ describe('LoginController', function () {
 			expect($scope.role).toMatch('student');
 			expect($location.path).toHaveBeenCalled();
 		});
-		it('should fail the login, invalid form', function() {
-			$scope.$valid = false;
+
+		it('should fail the login because the form is not valid', function() {
+			$scope.loginForm.$valid = false;
 			expect(mockLogin.login).not.toHaveBeenCalled();
+		});
+
+		it('should fail the login because the form is not valid', function() {
+			$scope.loginForm.$valid = false;
+			expect(mockLogin.login).not.toHaveBeenCalled();
+			expect($location.path).not.toHaveBeenCalled();
 		});
 	});
 });
