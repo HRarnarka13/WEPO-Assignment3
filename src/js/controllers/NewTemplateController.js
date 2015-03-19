@@ -57,22 +57,27 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		if ($scope.teacherQuestion.Type === 'text') {
 			newQuestion = {
 				Text: $scope.teacherQuestion.Text,
-				TextEn: $scope.teacherQuestion.TextEn,
+				TextEN: $scope.teacherQuestion.TextEn,
 				ImageURL: "",
 				Type: $scope.teacherQuestion.Type
 			};
 		} else {
+			$scope.Answers = [];
+			for (var i = 0; i < $scope.TchoicesIce.length; i++) {
+				var answer = {
+					Text: $scope.TchoicesIce[i],
+					TextEN: $scope.TchoicesIce[i],
+					ImageURL: "",
+					Weight: 1
+				};
+				$scope.Answers.push(answer);
+			}
 			newQuestion = {
 				Text: $scope.teacherQuestion.Text,
 				TextEn: $scope.teacherQuestion.TextEn,
 				ImageURL: "",
 				Type: $scope.teacherQuestion.Type,
-				Answers: {
-					Text: $scope.TchoicesIce,
-					TextEN: $scope.TchoicesEn,
-					ImageURL: "",
-					Weight: 1
-				}
+				Answers: $scope.Answers
 			};
 		}
 		$scope.teacherQuestions.push(newQuestion);
@@ -87,22 +92,27 @@ function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 		if ($scope.courseQuestion.Type === 'text') {
 			newQuestion = {
 				Text: $scope.courseQuestion.Text,
-				TextEn: $scope.courseQuestion.TextEn,
+				TextEN: $scope.courseQuestion.TextEn,
 				ImageURL: "",
 				Type: $scope.courseQuestion.Type
 			};
 		} else {
-			newQuestion = {
-				Text: $scope.courseQuestion.Text,
-				TextEn: $scope.courseQuestion.TextEn,
-				ImageURL: "",
-				Type: $scope.courseQuestion.Type,
-				Answers: {
-					Text: $scope.CchoicesIce,
-					TextEN: $scope.CchoicesEn,
+			$scope.Answers = [];
+			for (var i = 0; i < $scope.CchoicesIce.length; i++) {
+				var answer = {
+					Text: $scope.CchoicesIce[i],
+					TextEN: $scope.CchoicesIce[i],
 					ImageURL: "",
 					Weight: 1
-				}
+				};
+				$scope.Answers.push(answer);
+			}
+			newQuestion = {
+				Text: $scope.courseQuestion.Text,
+				TextEN: $scope.courseQuestion.TextEn,
+				ImageURL: "",
+				Type: $scope.courseQuestion.Type,
+				Answers: $scope.Answers
 			};
 		}
 		// Reset chices
