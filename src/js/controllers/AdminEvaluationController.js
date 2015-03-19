@@ -8,6 +8,7 @@ angular.module('TeachingEvaluations').controller('AdminEvaluationController', [
 function ($scope, $location, $rootScope, $routeParams, $http, AdminFactory) {
 	$scope.oneAtATime = false;
 
+
 	AdminFactory.getEvaluation($routeParams.evalID).success(function (data) {
 		console.log("data:");
 		$scope.results = data;
