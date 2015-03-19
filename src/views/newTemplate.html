@@ -35,7 +35,7 @@
 					<ul class="list-group">
 						<li class="list-group-item" ng-repeat="cq in courseQuestions track by $index">
 							<p>Text: {{cq.Text}}</p>
-							<p>Text (english): {{cq.TextEn}}</p>
+							<p>Text (english): {{cq.TextEN}}</p>
 							<div ng-show="cq.Type !== 'text'">
 								Choices:
 								<ul>
@@ -54,7 +54,7 @@
 					<ul class="list-group">
 						<li class="list-group-item" ng-repeat="tq in teacherQuestions track by $index">
 							<p>Text: {{tq.Text}}</p>
-							<p>Text (english): {{tq.TextEn}}</p>
+							<p>Text (english): {{tq.TextEN}}</p>
 							<div ng-show="tq.Type !== 'text'">
 								Choices:
 								<ul>
