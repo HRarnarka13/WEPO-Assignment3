@@ -30,7 +30,7 @@ describe('LoginController', function () {
 		},
 		setUser: function (user) {
 			return {
-				usernme: name
+				username: name
 			};
 		}
 	};
