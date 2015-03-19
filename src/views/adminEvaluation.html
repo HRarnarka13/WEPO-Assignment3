@@ -6,7 +6,12 @@
 			<accordion-group heading="{{cq.Text}} - TeacherSSN: {{cq.TeacherSSN}}" 
 							ng-repeat="cq in course.Questions track by $index">
 					<ul>
-						<li ng-repeat="cqt in cq.TextResults track by $index">{{cqt}}</li>
+						<li ng-show="cq.Type ==='text' " 
+							ng-repeat="cqt in cq.TextResults track by $index">{{cqt}}</li>
+						<li ng-show="cq.Type ==='single' || cq.Type === 'multiple'"
+							ng-repeat="cqQ in cq.OptionsResults track by $index">
+							{{cqQ.AnswerText}}
+							</li>
 					</ul>
 			</accordion-group>
 		</accordion>
