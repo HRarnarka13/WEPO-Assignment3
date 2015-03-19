@@ -1,40 +1,47 @@
-<h1>Admin yeah!</h1>
+<h2>Welcome admin</h2>
 
 <!--Evaluations templates -->
 <div class="col-md-6">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Template</h3>
+			<h3 class="panel-title">Templates</h3>
 		</div>
 		<div class="panel-body">
+			<div>
+				<a ng-href="#/admin/newtemplate">
+					<button class="btn btn-primary" id="newTemplateButton">New Template</button>	
+				</a>
+			</div>
 			<ul class="list-group">
 				<li class="list-group-item" ng-repeat="template in templates">{{template.ID}} - {{template.Title}}
 					<a ng-href="#/admin/evaluationtemplates/{{template.ID}}">
-						<button class="btn btn-xs btn-default pull-right">Modify</button>
+						<button class="btn btn-xs btn-primary pull-right">Create this template</button>
 					</a>
 				</li>
 			</ul>
 		</div>
-		<div class="panel-footer">
-			<a ng-href="#/admin/newtemplate">
-				<button class="btn btn-primary">New Template</button>	
-			</a>
-		</div>
+		
 	</div>
 </div>
 
 <!-- Evaluations -->
 <div class="col-md-6">
-	<div class="panel panel-default" ng-repeat="evaluation in evaluations">
+	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a ng-href="#/admin/evaluation/{{evaluation.ID}}">
-				<h3 class="panel-title">{{evaluation.TemplateTitle}}</h3>
-			</a>
+			<h3 class="panel-title">Evaluations</h3>
 		</div>
+	
 		<div class="panel-body">
-			<div> Start date: {{evaluation.StartDate |  date:"MM/dd/yyyy '-' HH:mm"}}</div>
-			<div> End date: {{evaluation.EndDate |  date:"MM/dd/yyyy '-' HH:mm"}}</div>
-			<div> State: {{evaluation.Status}} </div>
+	 		<ul class="list-group" ng-repeat="evaluation in evaluations">
+	 			<a ng-href="#/admin/evaluation/{{evaluation.ID}}" id="evaluationListLink">
+		 			<li class="list-group-item evaluationList">
+		 				<h4>{{evaluation.TemplateTitle}}</h4>
+		 				<div> Start date: {{evaluation.StartDate |  date:"MM/dd/yyyy '-' HH:mm"}}</div>
+						<div> End date: {{evaluation.EndDate |  date:"MM/dd/yyyy '-' HH:mm"}}</div>
+						<div> State: {{evaluation.Status}} </div>
+					</li>
+				</a>
+			</ul>
 		</div>
 	</div>
 </div>

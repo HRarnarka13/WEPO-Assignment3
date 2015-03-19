@@ -4,6 +4,7 @@
 @mainFooterColor: #fff;
 @mainFontColor: #000;
 @mainFontHoverColor: #fff;
+@mainPanelBodyHover: #F2F2F2;
 
 
 body { 
@@ -54,9 +55,26 @@ body {
 		}
 	}
 	.panel-body {
-		//background-color: @mainColor;
-	}
+        .evaluationList {
+            color: @mainFontColor;
+            &:hover {
+                background-color: @mainPanelBodyHover;
+                text-decoration: none;
+            } 
+        }
+        #evaluationListLink {
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        #newTemplateButton {
+            margin: 0 0 10px 0;
+        }
+    }
 	.panel-footer {
 		background-color: @mainFooterColor;
 	}
+
+
+
 }
