@@ -39,11 +39,11 @@
 							<div ng-show="cq.Type !== 'text'">
 								Choices:
 								<ul>
-									<li ng-repeat="cqAT in cq.Answers.Text">{{cqAT}}</li>
+									<li ng-repeat="cqAT in cq.Answers">{{cqAT.Text}}</li>
 								</ul>
 								Choices (English):
 								<ul>
-									<li ng-repeat="cqATEn in cq.Answers.TextEN">{{cqATEn}}</li>
+									<li ng-repeat="cqATEn in cq.Answers">{{cqATEn.TextEN}}</li>
 								</ul>
 							</div>
 						</li>
@@ -58,11 +58,11 @@
 							<div ng-show="tq.Type !== 'text'">
 								Choices:
 								<ul>
-									<li ng-repeat="tqAT in tq.Answers.Text">{{tqAT}}</li>
+									<li ng-repeat="tqAT in tq.Answers">{{tqAT.Text}}</li>
 								</ul>
 								Choices (English):
 								<ul>
-									<li ng-repeat="tqATEn in tq.Answers.TextEN">{{tqATEn}}</li>
+									<li ng-repeat="tqATEn in tq.Answers">{{tqATEn.TextEN}}</li>
 								</ul>
 							</div>
 						</li>
